@@ -1,447 +1,389 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const certificadoModal = document.getElementById('certificado-modal');
-    const modalImg = document.getElementById('img-certificado-modal');
-    const captionText = document.getElementById('modal-caption');
-    const closeModal = document.querySelector('.cerrar-modal');
-    const contenidoGratuitoModal = document.getElementById('contenido-gratuito-modal');
-    const formContenidoGratuito = document.getElementById('form-contenido-gratuito');
-    const cerrarContenidoModalGratuito = document.querySelector('.cerrar-modal-gratuito');
+// ==========================================
+// 1. ESTADO GLOBAL
+// ==========================================
+const state = {
+    currentPath: '',
+    menuItems: [
+        { id: 'servicios', label: 'Servicios' },
+        { id: 'quienes-somos', label: 'Nosotros' },
+        { id: 'contenido-gratuito', label: 'Recursos Gratuitos' },
+        { id: 'certificados', label: 'Certificados' },
+        { id: 'contacto', label: 'Contacto' }
+    ]
+};
 
-    let lastInteraction = { type: null, wasSwipe: false, time: 0 };
+// ==========================================
+// 2. COMPONENTES HTML (Diseño Moderno)
+// ==========================================
 
-    const contactForm = document.getElementById('contactForm');
-    const enviarConsultaBtn = document.getElementById('enviarConsultaBtn');
+const Header = () => `
+    <header class="header anim-montaje">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./assets/images/logo1.png" alt="DigitalBloomKT Logo">
+                <div class="logo-text">
+                    <h1>DIGITALBLOOMKT</h1>
+                    <p>Agencia de Marketing</p>
+                </div>
+            </div>
+            <nav class="menu">
+                ${state.menuItems.map(item => `
+                    <a href="#${item.id}" class="menu-item">${item.label}</a>
+                `).join('')}
+            </nav>
+            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+`;
 
-    if (enviarConsultaBtn && contactForm) {
-        enviarConsultaBtn.addEventListener('click', function() {
-            if (!contactForm.checkValidity()) {
-                contactForm.reportValidity();
-                return;
-            }
-            
-            // --- NUEVA LÓGICA DE ENVÍO DIRECTO ---
-            const formData = new FormData(contactForm);
-            
-            // Feedback visual en el botón
-            const textoOriginal = enviarConsultaBtn.innerText;
-            enviarConsultaBtn.innerText = "Enviando...";
-            enviarConsultaBtn.disabled = true;
+const Hero = () => `
+    <section id="hero" class="hero anim-montaje" style="animation-delay: 0.2s;">
+        <div class="hero-content">
+            <p class="hero-tagline">Estrategia & Creatividad</p>
+            <h2 class="hero-title">Donde tu marca <span>florece.</span></h2>
+            <a href="#servicios" class="btn-primary">Descubrir Servicios</a>
+        </div>
+        <div class="hero-image-wrapper">
+             <img class="hero-image" src="./assets/images/fondo1.png" alt="DigitalBloomKT Background">
+        </div>
+    </section>
+`;
 
-            fetch('enviar_consulta.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data); // El PHP responderá si se envió con éxito
-                if (data.includes("éxito")) {
-                    contactForm.reset();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Hubo un error al enviar la consulta.");
-            })
-            .finally(() => {
-                enviarConsultaBtn.innerText = textoOriginal;
-                enviarConsultaBtn.disabled = false;
-            });
-            // --- FIN LÓGICA DE ENVÍO DIRECTO ---
+const Servicios = () => `
+    <section id="servicios" class="servicios section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">EXPERTISE</span>
+                <h2>Te presento mis servicios</h2>
+            </div>
+            <div class="servicios-grid">
+                <div class="servicio-card"><i class="fas fa-hashtag icon"></i><h3>Gestión en Redes Sociales</h3><p>Construimos comunidades sólidas y auténticas.</p></div>
+                <div class="servicio-card"><i class="fas fa-bullhorn icon"></i><h3>Pauta Publicitaria</h3><p>Campañas optimizadas en Meta Ads y Google Ads.</p></div>
+                <div class="servicio-card"><i class="fas fa-chess-knight icon"></i><h3>Creación de Estrategia</h3><p>Rutas claras para el crecimiento de tu negocio.</p></div>
+                <div class="servicio-card"><i class="fas fa-palette icon"></i><h3>Diseño en Canva</h3><p>Piezas visuales atractivas y funcionales.</p></div>
+                <div class="servicio-card"><i class="fas fa-laptop-code icon"></i><h3>Desarrollo Web</h3><p>Tu casa digital rápida, segura y estéticamente impecable.</p></div>
+                <div class="servicio-card"><i class="fas fa-fingerprint icon"></i><h3>Identidad de Marca</h3><p>Desarrollo de branding que conecta y perdura.</p></div>
+            </div>
+        </div>
+    </section>
+`;
+
+const QuienesSomos = () => `
+    <section id="quienes-somos" class="quienes-somos section-padding">
+        <div class="container layout-split">
+            <div class="content-text">
+                <span class="subtitle">NUESTRA HISTORIA</span>
+                <h2>Quiénes Somos</h2>
+                <p>Digitalbloomkt nació del deseo de transformar marcas que sienten que tienen mucho para dar… pero no saben cómo mostrarlo.</p>
+                <p>Soy <strong>Brenda Dujovich</strong>, y estoy detrás de esta agencia que combina estrategia, creatividad y mucha empatía.</p>
+                <p>Durante años trabajé con fábricas, emprendedores y marcas que querían crecer pero se sentían perdidos entre reels, algoritmos y diseños. Ahí entendí algo clave: <strong>no alcanza con publicar, hay que conectar.</strong></p>
+                <ul class="check-list">
+                    <li><i class="fas fa-check"></i> Diseñamos estrategias reales.</li>
+                    <li><i class="fas fa-check"></i> Creamos contenido que representa tu esencia.</li>
+                    <li><i class="fas fa-check"></i> Acompañamos a tu marca a florecer paso a paso.</li>
+                </ul>
+                <p class="highlight-text">Bienvenido a Digitalbloomkt, donde tu marca florece.</p>
+            </div>
+            <div class="content-image">
+                 <div class="image-placeholder">
+                    <img src="./assets/images/logo1.png" alt="Brenda Dujovich - DigitalBloomKT">
+                 </div>
+            </div>
+        </div>
+    </section>
+`;
+
+const ContenidoGratuito = () => `
+    <section id="contenido-gratuito" class="contenido-gratuito section-padding">
+        <div class="container container-cta">
+            <div class="cta-card">
+                <h2>Descarga mi contenido gratuito</h2>
+                <p>Recursos, guías y plantillas diseñadas para impulsar el crecimiento de tu marca hoy mismo.</p>
+                <button id="descarga-aqui-btn" class="btn-primary">Descargar Aquí</button>
+            </div>
+        </div>
+    </section>
+`;
+
+const Resenas = () => `
+    <section id="reseñas-section" class="reseñas-section section-padding">
+        <div class="container">
+            <div class="section-header center">
+                <span class="subtitle">TESTIMONIOS</span>
+                <h2>Lo que dicen nuestros clientes</h2>
+            </div>
+            <div class="reseñas-grid">
+                <div class="review-card"><img src="assets/images/res-img.jpg" alt="Reseña 1"></div>
+                <div class="review-card"><img src="assets/images/res-img2.jpg" alt="Reseña 2"></div>
+                <div class="review-card"><img src="assets/images/res-img3.jpg" alt="Reseña 3"></div>
+                <div class="review-card"><img src="assets/images/res-img4.jpg" alt="Reseña 4"></div>
+            </div>
+            <div class="ver-mas-container">
+                <a href="https://www.instagram.com/stories/highlights/17844320421113426/" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver más reseñas en Instagram <i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+`;
+
+const Certificados = () => `
+    <section id="certificados" class="certificados section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">FORMACIÓN</span>
+                <h2>Mis Certificados</h2>
+            </div>
+            <div class="certificados-grid"> 
+                <div class="cert-card" data-large-image="assets/certificados/adsvisors.png" data-caption="Marketing Digital (Advisors)"><i class="fas fa-award cert-icon"></i><p>Advisors Marketing</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/cmypublicidad.png" data-caption="Community Manager y Publicidad"><i class="fas fa-award cert-icon"></i><p>CM y Publicidad</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/copywriting.png" data-caption="Copywriting Persuasivo"><i class="fas fa-award cert-icon"></i><p>Copywriting</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/HerramientasDigitales.png" data-caption="Herramientas Digitales I"><i class="fas fa-award cert-icon"></i><p>Herramientas I</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/GrowthMarketing.png" data-caption="Growth Marketing"><i class="fas fa-award cert-icon"></i><p>Growth Marketing</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/seo.png" data-caption="SEO Básico"><i class="fas fa-award cert-icon"></i><p>SEO Básico</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/publicidad.png" data-caption="Avanzado Google Ads"><i class="fas fa-award cert-icon"></i><p>Google Ads</p></div>
+                <div class="cert-card" data-large-image="assets/certificados/marketingdigital.png" data-caption="Marketing Digital"><i class="fas fa-award cert-icon"></i><p>Marketing Digital</p></div>
+            </div>
+        </div>
+    </section>
+`;
+
+const Contacto = () => `
+    <section id="contacto" class="contacto section-padding">
+        <div class="container layout-split">
+            <div class="contact-info">
+                <span class="subtitle">HABLEMOS</span>
+                <h2>Contáctanos</h2>
+                <p>¿Lista para hacer florecer tu marca? Escríbenos y comencemos a trabajar en tu estrategia.</p>
+                <div class="social-links-modern">
+                    <a href="https://www.instagram.com/digitalbloomkt/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/16BipM7eHb/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="mailto:brendadujovich@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.tiktok.com/@digitalbloomkt?lang=es-419" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="modern-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="consulta">Mensaje</label>
+                        <textarea id="consulta" name="consulta" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                    </div>
+                    <button type="button" id="enviarConsultaBtn" class="btn-primary w-100">Enviar Consulta</button>
+                </form>
+            </div>
+        </div>
+    </section>
+`;
+
+const Footer = () => `
+    <footer class="modern-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h2>DigitalBloo<span>MKT</span></h2>
+                <p>Neuro-estrategias para marcas que dominan el futuro.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Navegación</h3>
+                <a href="#servicios">Servicios</a>
+                <a href="#quienes-somos">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-status">
+                <div class="status-badge">
+                    <span class="dot"></span> DISPONIBLE
+                </div>
+                <p>Aceptando nuevos desafíos para 2026.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 DIGITALBLOOMKT — Todos los derechos reservados.</p>
+        </div>
+    </footer>
+`;
+
+const ModalsYExtras = () => `
+    <a href="https://wa.me/+5492213576210?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="contenido-gratuito-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="cerrar-modal-gratuito">&times;</span>
+            <h2>Material Gratuito</h2>
+            <p>Selecciona los recursos y te los enviaremos.</p>
+            <form id="form-contenido-gratuito" class="modern-form">
+                <div class="checkbox-grid">
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-seo"><span>Guía de SEO Básico</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="checklist"><span>Checklist Marketing</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="copywriting"><span>Ebook Copywriting</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="reels"><span>Guía Reels y TikTok</span></label>
+                </div>
+                <input type="email" id="user-email-gratuito" placeholder="Tu Email" required style="margin-top:15px; width:100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size:1.1rem;">
+                <button type="submit" class="btn-primary w-100" style="margin-top: 15px;">Solicitar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="certificado-modal" class="modal-overlay">
+        <span class="cerrar-modal">&times;</span>
+        <div class="modal-image-container">
+             <img id="img-certificado-modal" src="" alt="Certificado">
+             <div id="modal-caption"></div>
+        </div>
+    </div>
+`;
+
+const App = () => `
+    ${Header()}
+    ${Hero()}
+    ${Servicios()}
+    ${QuienesSomos()}
+    ${ContenidoGratuito()}
+    ${Resenas()}
+    ${Certificados()}
+    ${Contacto()}
+    ${Footer()}
+    ${ModalsYExtras()}
+`;
+
+// ==========================================
+// 3. RENDERIZADO SPA
+// ==========================================
+function renderApp() {
+    const appContainer = document.getElementById('app');
+    
+    const mount = () => {
+        appContainer.innerHTML = App();
+        requestAnimationFrame(() => {
+            appContainer.querySelectorAll('.anim-montaje').forEach(el => el.classList.add('montado'));
         });
+        initEffects();
+    };
+
+    if (document.startViewTransition) {
+        document.startViewTransition(() => mount());
+    } else {
+        mount();
     }
+}
 
-    const track = document.querySelector('.certificados-container');
-    const nextButton = document.querySelector('.carousel-next-btn');
-    const prevButton = document.querySelector('.carousel-prev-btn');
-    const dotsContainer = document.querySelector('.carousel-dots');
-    const carouselViewport = document.querySelector('.carousel-viewport');
-
-    if (track && nextButton && prevButton && dotsContainer && carouselViewport) {
-        const slides = Array.from(track.children);
-        let slideWidth;
-        let currentSlideIndex = 0;
-        let slidesPerPage = 0;
-
-        let startX = 0;
-        let endX = 0;
-        let isDragging = false;
-        let currentTrackOffset = 0;
-        let startTime = 0;
-        const swipeThreshold = 75;
-        const tapMaxDistance = 12;
-        const tapMaxDuration = 250;
-
-        function calculateSlideDimensions() {
-            if (slides.length === 0) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-                dotsContainer.style.display = 'none';
-                return;
-            }
-            const firstSlide = slides[0];
-            const slideComputedStyle = getComputedStyle(firstSlide);
-            const slideElementWidth = firstSlide.offsetWidth;
-            const marginRight = parseFloat(slideComputedStyle.marginRight);
-            slideWidth = slideElementWidth + marginRight;
-            const visibleViewportWidth = carouselViewport.offsetWidth;
-            const desktopBreakpoint = 1200;
-            if (window.innerWidth >= desktopBreakpoint) {
-                slidesPerPage = Math.floor(visibleViewportWidth / slideWidth);
-                if (slidesPerPage === 0) slidesPerPage = 1;
-                if (slidesPerPage > 5) slidesPerPage = 5;
-            } else {
-                slidesPerPage = Math.floor(visibleViewportWidth / slideWidth);
-                if (slidesPerPage <= 0) slidesPerPage = 1;
-            }
-            if (slidesPerPage > slides.length) slidesPerPage = slides.length;
-            if (slides.length <= slidesPerPage) {
-                nextButton.style.display = 'none';
-                prevButton.style.display = 'none';
-                dotsContainer.style.display = 'none';
-            } else {
-                nextButton.style.display = 'block';
-                prevButton.style.display = 'block';
-                dotsContainer.style.display = 'block';
-            }
-            moveToSlide(currentSlideIndex, false);
-        }
-
-        function moveToSlide(index, animate = true) {
-            let maxIndex = slides.length - slidesPerPage;
-            if (maxIndex < 0) maxIndex = 0;
-            if (index < 0) currentSlideIndex = 0;
-            else if (index > maxIndex) currentSlideIndex = maxIndex;
-            else currentSlideIndex = index;
-            currentTrackOffset = -currentSlideIndex * slideWidth;
-            if (animate) track.style.transition = 'transform 0.5s ease-in-out';
-            else track.style.transition = 'none';
-            track.style.transform = `translateX(${currentTrackOffset}px)`;
-            updateDots();
-            updateArrowVisibility();
-        }
-
-        function setupDots() {
-            dotsContainer.innerHTML = '';
-            const totalPages = Math.ceil(slides.length / slidesPerPage);
-            for (let i = 0; i < totalPages; i++) {
-                const dot = document.createElement('span');
-                dot.classList.add('dot');
-                dot.addEventListener('click', () => moveToSlide(i * slidesPerPage));
-                dotsContainer.appendChild(dot);
-            }
-            updateDots();
-        }
-
-        function updateDots() {
-            const dots = Array.from(dotsContainer.children);
-            if (dots.length === 0) return;
-            dots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                if (currentSlideIndex >= (i * slidesPerPage) && currentSlideIndex < ((i + 1) * slidesPerPage)) dot.classList.add('active');
-                const totalPages = Math.ceil(slides.length / slidesPerPage);
-                if (currentSlideIndex === slides.length - slidesPerPage && i === totalPages - 1) dot.classList.add('active');
-            });
-            if (currentSlideIndex === 0 && dots.length > 0) dots[0].classList.add('active');
-        }
-
-        function updateArrowVisibility() {
-            prevButton.disabled = currentSlideIndex === 0;
-            nextButton.disabled = currentSlideIndex >= (slides.length - slidesPerPage);
-            if (slides.length <= slidesPerPage) {
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
-            } else {
-                prevButton.style.display = 'block';
-                nextButton.style.display = 'block';
-            }
-        }
-
-        nextButton.addEventListener('click', () => {
-            moveToSlide(currentSlideIndex + slidesPerPage);
-        });
-        prevButton.addEventListener('click', () => {
-            moveToSlide(currentSlideIndex - slidesPerPage);
-        });
-
-        track.addEventListener('touchstart', handleStart, { passive: true });
-        track.addEventListener('mousedown', handleStart);
-
-        function handleStart(e) {
-            if (slides.length <= slidesPerPage) return;
-            startX = (e.touches ? e.touches[0].clientX : e.clientX);
-            startTime = Date.now();
-            isDragging = true;
-            track.style.transition = 'none';
-            if (e.type === 'mousedown') e.preventDefault();
-            document.addEventListener('touchmove', handleMove, { passive: false });
-            document.addEventListener('mousemove', handleMove);
-            document.addEventListener('touchend', handleEnd);
-            document.addEventListener('mouseup', handleEnd);
-            document.addEventListener('mouseleave', handleEnd);
-        }
-
-        function handleMove(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            endX = (e.touches ? e.touches[0].clientX : e.clientX);
-            const dragDistance = endX - startX;
-            track.style.transform = `translateX(${currentTrackOffset + dragDistance}px)`;
-        }
-
-        function handleEnd(e) {
-            if (!isDragging) return;
-            document.removeEventListener('touchmove', handleMove);
-            document.removeEventListener('mousemove', handleMove);
-            document.removeEventListener('touchend', handleEnd);
-            document.removeEventListener('mouseup', handleEnd);
-            document.removeEventListener('mouseleave', handleEnd);
-            isDragging = false;
-            const distance = (endX || startX) - startX;
-            const duration = Date.now() - startTime;
-            let nextIndex = currentSlideIndex;
-            const absDistance = Math.abs(distance);
-            let wasSwipe = false;
-            if (absDistance > swipeThreshold) wasSwipe = true;
-            if (distance < -swipeThreshold) nextIndex = currentSlideIndex + slidesPerPage;
-            else if (distance > swipeThreshold) nextIndex = currentSlideIndex - slidesPerPage;
-            moveToSlide(nextIndex);
-            lastInteraction.type = (e.type && e.type.startsWith && e.type.startsWith('touch')) ? 'touch' : 'mouse';
-            lastInteraction.wasSwipe = wasSwipe;
-            lastInteraction.time = Date.now();
-            startX = 0;
-            endX = 0;
-            startTime = 0;
-            if (wasSwipe && e.type && e.type.startsWith && e.type.startsWith('touch')) {
-                if (e.cancelable) e.preventDefault();
-            }
-        }
-
-        calculateSlideDimensions();
-        setupDots();
-        moveToSlide(0, false);
-
-        window.addEventListener('resize', () => {
-            calculateSlideDimensions();
-            setupDots();
-            moveToSlide(currentSlideIndex, false);
-        });
-
-        const certificadosParaModal = document.querySelectorAll('.certificado-circulo');
-
-        if (certificadosParaModal.length > 0) {
-            certificadosParaModal.forEach(certificado => {
-                certificado.addEventListener('touchstart', function(e) {
-                    const t = (e.touches && e.touches[0]) || null;
-                    if (t) {
-                        this._touchStartX = t.clientX;
-                        this._touchStartY = t.clientY;
-                        this._touchStartTime = Date.now();
-                    }
-                }, { passive: true });
-
-                certificado.addEventListener('touchend', function(e) {
-                    const touch = (e.changedTouches && e.changedTouches[0]) || null;
-                    if (!touch) return;
-                    const touchX = touch.clientX;
-                    const touchY = touch.clientY;
-                    const startXLocal = this._touchStartX || touchX;
-                    const startYLocal = this._touchStartY || touchY;
-                    const duration = Date.now() - (this._touchStartTime || Date.now());
-                    const deltaX = touchX - startXLocal;
-                    const deltaY = touchY - startYLocal;
-                    const absX = Math.abs(deltaX);
-                    const absY = Math.abs(deltaY);
-                    const now = Date.now();
-                    if (absX <= tapMaxDistance && absY <= tapMaxDistance && duration <= tapMaxDuration) {
-                        lastInteraction.type = 'touch';
-                        lastInteraction.wasSwipe = false;
-                        lastInteraction.time = now;
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const imageUrlToDisplay = this.dataset.largeImage;
-                        const caption = this.dataset.caption;
-                        if (imageUrlToDisplay) {
-                            modalImg.src = imageUrlToDisplay;
-                            modalImg.alt = caption || "Certificado Ampliado";
-                            certificadoModal.style.display = 'flex';
-                            document.body.classList.add('modal-open');
-                        }
-                        if (captionText) {
-                            if (window.innerWidth >= 768) {
-                                captionText.textContent = caption || '';
-                            } else {
-                                captionText.textContent = '';
-                            }
-                        }
-                    } else {
-                        lastInteraction.type = 'touch';
-                        lastInteraction.wasSwipe = true;
-                        lastInteraction.time = now;
-                    }
-                    this._touchStartX = null;
-                    this._touchStartY = null;
-                    this._touchStartTime = null;
-                }, { passive: false });
-            });
-        }
-    }
-
-    const certificadosParaModalClick = document.querySelectorAll('.certificado-circulo');
-
-    if (certificadoModal && modalImg && closeModal && certificadosParaModalClick.length > 0) {
-        certificadosParaModalClick.forEach(certificado => {
-            certificado.addEventListener('click', function(e) {
-                if (lastInteraction.type === 'touch' && (Date.now() - lastInteraction.time) < 500) {
-                    return;
-                }
-                e.stopPropagation();
-                const imageUrlToDisplay = this.dataset.largeImage;
-                const caption = this.dataset.caption;
-                if (imageUrlToDisplay) {
-                    modalImg.src = imageUrlToDisplay;
-                    modalImg.alt = caption || "Certificado Ampliado";
-                    certificadoModal.style.display = 'flex';
-                    document.body.classList.add('modal-open');
-                } else {
-                    return;
-                }
-                if (captionText) {
-                    if (window.innerWidth >= 768) {
-                        captionText.textContent = caption || '';
-                    } else {
-                        captionText.textContent = '';
-                    }
-                }
-            });
-        });
-
-        closeModal.addEventListener('click', function() {
-            certificadoModal.style.display = 'none';
-            modalImg.src = '';
-            if (captionText) captionText.textContent = '';
-            document.body.classList.remove('modal-open');
-        });
-
-        certificadoModal.addEventListener('click', function(event) {
-            if (event.target === certificadoModal) {
-                certificadoModal.style.display = 'none';
-                modalImg.src = '';
-                if (captionText) captionText.textContent = '';
-                document.body.classList.remove('modal-open');
-            }
-        });
-    }
-
-    const btnAbrirContenidoModalGratuito = document.getElementById('descarga-aqui-btn');
-
-    if (btnAbrirContenidoModalGratuito && contenidoGratuitoModal && cerrarContenidoModalGratuito && formContenidoGratuito) {
-        btnAbrirContenidoModalGratuito.addEventListener('click', function(e) {
-            e.preventDefault();
-            contenidoGratuitoModal.style.display = 'flex';
-            document.body.classList.add('modal-open');
-        });
-
-        cerrarContenidoModalGratuito.addEventListener('click', function() {
-            contenidoGratuitoModal.style.display = 'none';
-            formContenidoGratuito.reset();
-            document.body.classList.remove('modal-open');
-        });
-
-        contenidoGratuitoModal.addEventListener('click', function(event) {
-            if (event.target === contenidoGratuitoModal) {
-                contenidoGratuitoModal.style.display = 'none';
-                formContenidoGratuito.reset();
-                document.body.classList.remove('modal-open');
-            }
-        });
-
-        formContenidoGratuito.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const userEmail = document.getElementById('user-email-gratuito').value;
-            const selectedContents = [];
-            const checkboxes = document.querySelectorAll('#form-contenido-gratuito input[name="contenido"]:checked');
-            checkboxes.forEach(checkbox => {
-                const labelText = checkbox.parentNode.textContent.trim();
-                selectedContents.push(labelText);
-            });
-            if (selectedContents.length === 0) {
-                alert('Por favor, selecciona al menos un contenido para descargar.');
-                return;
-            }
-            const recipientEmail = 'brendadujovich@gmail.com';
-            const subject = encodeURIComponent('Solicitud de Contenido Gratuito desde el Sitio Web');
-            let emailBody = `Hola DIGITALBLOOMKT,\n\n`;
-            emailBody += `El usuario ${userEmail} ha solicitado el siguiente contenido gratuito:\n\n`;
-            emailBody += selectedContents.map(content => `- ${content}`).join('\n');
-            emailBody += `\n\nPor favor, contacta a ${userEmail} para enviarle el contenido solicitado.\n\nSaludos,\nTu Sitio Web`;
-            const body = encodeURIComponent(emailBody);
-            const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
-            window.open(mailtoUrl, '_blank');
-            contenidoGratuitoModal.style.display = 'none';
-            formContenidoGratuito.reset();
-            document.body.classList.remove('modal-open');
-        });
-    }
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' || event.key === 'Esc') {
-            let modalClosed = false;
-            if (certificadoModal && certificadoModal.style.display === 'flex') {
-                certificadoModal.style.display = 'none';
-                modalImg.src = '';
-                if (captionText) captionText.textContent = '';
-                modalClosed = true;
-            }
-            if (contenidoGratuitoModal && contenidoGratuitoModal.style.display === 'flex') {
-                contenidoGratuitoModal.style.display = 'none';
-                formContenidoGratuito.reset();
-                modalClosed = true;
-            }
-            if (modalClosed) document.body.classList.remove('modal-open');
-        }
+// ==========================================
+// 4. LÓGICA DE INTERACCIÓN
+// ==========================================
+function initEffects() {
+    
+    // Header Sticky Effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     });
 
-    const navMenuSection = document.querySelector('.nav-menu-section');
-    const menu = document.querySelector('.menu');
-
-    if (navMenuSection && menu) {
-        const menuOffsetTop = navMenuSection.offsetTop;
-        let menuPlaceholder = null;
-        function handleScrollAndResize() {
-            if (window.innerWidth >= 1024) {
-                if (window.scrollY >= menuOffsetTop) {
-                    if (!menuPlaceholder) {
-                        menuPlaceholder = document.createElement('div');
-                        menuPlaceholder.style.height = navMenuSection.offsetHeight + 'px';
-                        navMenuSection.parentNode.insertBefore(menuPlaceholder, navMenuSection);
-                    }
-                    navMenuSection.style.position = 'fixed';
-                    navMenuSection.style.top = '0';
-                    navMenuSection.style.width = '100%';
-                    navMenuSection.style.zIndex = '9999';
-                } else {
-                    navMenuSection.style.position = 'static';
-                    navMenuSection.style.top = '';
-                    navMenuSection.style.width = '';
-                    navMenuSection.style.zIndex = '';
-                    if (menuPlaceholder) {
-                        navMenuSection.parentNode.removeChild(menuPlaceholder);
-                        menuPlaceholder = null;
-                    }
-                }
-            } else {
-                navMenuSection.style.position = 'static';
-                navMenuSection.style.top = '';
-                navMenuSection.style.width = '';
-                navMenuSection.style.zIndex = '';
-                if (menuPlaceholder) {
-                    navMenuSection.parentNode.removeChild(menuPlaceholder);
-                    menuPlaceholder = null;
-                }
-            }
-        }
-        handleScrollAndResize();
-        window.addEventListener('scroll', handleScrollAndResize);
-        window.addEventListener('resize', handleScrollAndResize);
+    // Menú Móvil
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.menu');
+    if(mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
     }
-});
+
+    // Scroll Suave
+    document.querySelectorAll('.menu-item').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                navMenu.classList.remove('active'); // Cerrar menu en movil
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerHeight;
+        
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+        });
+    });
+
+    // Modales
+    const openModal = (id) => {
+        document.getElementById(id).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+    const closeModal = () => {
+        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+        document.body.style.overflow = 'auto';
+    };
+
+    const btnGratis = document.getElementById('descarga-aqui-btn');
+    if(btnGratis) btnGratis.addEventListener('click', () => openModal('contenido-gratuito-modal'));
+
+    document.querySelectorAll('.cert-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const img = document.getElementById('img-certificado-modal');
+            const caption = document.getElementById('modal-caption');
+            if(this.dataset.largeImage) {
+                img.src = this.dataset.largeImage;
+                caption.textContent = this.dataset.caption;
+                openModal('certificado-modal');
+            }
+        });
+    });
+
+    document.querySelectorAll('.cerrar-modal, .cerrar-modal-gratuito, .modal-overlay').forEach(el => {
+        el.addEventListener('click', (e) => {
+            if(e.target === el) closeModal();
+        });
+    });
+
+    // Intersection Observer Animaciones al Scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-header, .servicio-card, .review-card, .cert-card, .content-text, .modern-form').forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        observer.observe(el);
+    });
+
+    // Formularios
+    const contactForm = document.getElementById('contactForm');
+    const enviarConsultaBtn = document.getElementById('enviarConsultaBtn');
+    if (enviarConsultaBtn && contactForm) {
+        enviarConsultaBtn.addEventListener('click', function() {
+            if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+            const formData = new FormData(contactForm);
+            const originalText = this.innerText;
+            this.innerText = "Enviando..."; this.disabled = true;
+
+            fetch('enviar_consulta.php', { method: 'POST', body: formData })
+            .then(res => res.text()).then(data => { alert(data); contactForm.reset(); })
+            .catch(() => alert("Error enviando consulta."))
+            .finally(() => { this.innerText = originalText; this.disabled = false; });
+        });
+    }
+
+    const formGratis = document.getElementById('form-contenido-gratuito');
+    if(formGratis) {
+        formGratis.addEventListener('submit', (e) => {
+            e.preventDefault();
+            closeModal();
+            alert("Solicitud enviada. Revisa tu email.");
+            formGratis.reset();
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', renderApp);
