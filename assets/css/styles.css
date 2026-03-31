@@ -633,6 +633,252 @@ a { text-decoration: none; color: inherit; }
 .fade-in-up { opacity: 1 !important; transform: translateY(0) !important; transition: opacity 0.8s ease, transform 0.8s ease; }
 
 /* ==========================================
+   ESTILOS PARA EL MODAL ENRIQUECIDO Y PACKS
+   ========================================== */
+.servicio-modal-scroll {
+    max-height: 75vh;
+    overflow-y: auto;
+    padding-right: 15px;
+    text-align: left;
+    position: relative;
+}
+.servicio-modal-scroll::-webkit-scrollbar { width: 6px; }
+.servicio-modal-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+.modal-subtitle-gold {
+    color: var(--gray-text);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Grilla de Tarjetas de Packs */
+.packs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pack-card {
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius);
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+.pack-card h3 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.4rem;
+    transition: var(--transition);
+}
+.pack-arrow {
+    color: var(--primary);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+.pack-card:hover {
+    border-color: var(--primary);
+    transform: translateX(5px); /* Efecto de moverse hacia la flecha */
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+}
+.pack-card:hover h3 { color: var(--primary); }
+.pack-card:hover .pack-arrow { transform: translateX(5px); }
+
+/* Botón "Volver a Packs" (Arriba a la izquierda por UX) */
+.btn-back-packs {
+    background: none;
+    border: none;
+    color: var(--gray-text);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background-color: var(--gray-light);
+    transition: var(--transition);
+}
+.btn-back-packs:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* Estilos internos de los beneficios del pack */
+.modal-rich-text h4 {
+    color: var(--dark);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+}
+.modal-rich-text ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+.modal-rich-text li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--gray-text);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+.modal-rich-text li i {
+    color: var(--primary); 
+    margin-top: 5px;
+    font-size: 1rem;
+}
+.modal-bonus {
+    background-color: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 20px;
+    border-radius: 4px;
+    margin: 30px 0;
+    color: var(--dark);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   ESTILOS PARA EL MODAL ENRIQUECIDO Y PACKS
+   ========================================== */
+.servicio-modal-scroll {
+    max-height: 75vh;
+    overflow-y: auto;
+    padding-right: 15px;
+    text-align: left;
+    position: relative;
+}
+.servicio-modal-scroll::-webkit-scrollbar { width: 6px; }
+.servicio-modal-scroll::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+.modal-subtitle-gold {
+    color: var(--gray-text);
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Grilla de Tarjetas de Packs */
+.packs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pack-card {
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius);
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+.pack-card h3 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.4rem;
+    transition: var(--transition);
+}
+.pack-arrow {
+    color: var(--primary);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+.pack-card:hover {
+    border-color: var(--primary);
+    transform: translateX(5px); /* Efecto de moverse hacia la flecha */
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+}
+.pack-card:hover h3 { color: var(--primary); }
+.pack-card:hover .pack-arrow { transform: translateX(5px); }
+
+/* Botón "Volver a Packs" (Arriba a la izquierda por UX) */
+.btn-back-packs {
+    background: none;
+    border: none;
+    color: var(--gray-text);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background-color: var(--gray-light);
+    transition: var(--transition);
+}
+.btn-back-packs:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* Estilos internos de los beneficios del pack */
+.modal-rich-text h4 {
+    color: var(--dark);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+}
+.modal-rich-text ul {
+    list-style: none;
+    margin-bottom: 25px;
+}
+.modal-rich-text li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--gray-text);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+.modal-rich-text li i {
+    color: var(--primary); 
+    margin-top: 5px;
+    font-size: 1rem;
+}
+.modal-bonus {
+    background-color: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 20px;
+    border-radius: 4px;
+    margin: 30px 0;
+    color: var(--dark);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* ==========================================
    12. RESPONSIVE (Móviles)
    ========================================== */
 @media (max-width: 992px) {

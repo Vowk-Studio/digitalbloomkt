@@ -1,5 +1,5 @@
 // ==========================================
-// 1. ESTADO GLOBAL
+// 1. ESTADO GLOBAL Y DATOS DE SERVICIOS
 // ==========================================
 const state = {
     currentPath: '',
@@ -10,6 +10,234 @@ const state = {
         { id: 'certificados', label: 'Certificados' },
         { id: 'contacto', label: 'Contacto' }
     ]
+};
+
+// Base de datos de los modales de Servicios (Estructura de Packs Completa)
+const servicesDetails = {
+    'redes-sociales': {
+        title: 'Gestión en Redes Sociales',
+        subtitle: 'Elegí el pack ideal para tu marca',
+        packs: [
+            {
+                name: 'Pack DAISY',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye este servicio mensual?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Contenido Mensual:</strong> 2 Reels, 2 Carruseles y 8 Historias (adaptables a TikTok y WhatsApp).</li>
+                            <li><i class="fas fa-check"></i> <strong>Estrategia Coherente:</strong> Diseñada para generar conexión emocional, autoridad, interacción real y ventas.</li>
+                            <li><i class="fas fa-check"></i> <strong>Copywriting y SEO:</strong> Textos persuasivos, limpios y con hashtags estratégicos según tu nicho.</li>
+                            <li><i class="fas fa-check"></i> <strong>Gestión Integral:</strong> Edición audiovisual, programación, publicación y análisis de horarios óptimos.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-gift" style="color:var(--primary); margin-right: 5px;"></i> BONUS EXCLUSIVO:</strong> Optimización de perfil de Instagram (Redacción de bio profesional, diseño de historias destacadas y enlaces efectivos).
+                        </div>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información y contratar el Pack DAISY de Gestión en Redes Sociales.'
+            },
+            {
+                name: 'Pack BLOOM',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye este servicio mensual?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Contenido Mensual:</strong> 4 Reels, 4 Carruseles y 16 Historias (adaptables a TikTok y WhatsApp).</li>
+                            <li><i class="fas fa-check"></i> <strong>Estrategia Intensiva:</strong> Mayor visibilidad, constancia de marca, interacción y posicionamiento sin saturar a tu comunidad.</li>
+                            <li><i class="fas fa-check"></i> <strong>Copywriting y SEO:</strong> Textos claros, persuasivos y enfocados en conectar y convertir.</li>
+                            <li><i class="fas fa-check"></i> <strong>Gestión Integral:</strong> Edición, programación, publicación y análisis mensual de rendimiento para detectar mejoras.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-gift" style="color:var(--primary); margin-right: 5px;"></i> BONUS EXCLUSIVO:</strong> Optimización de perfil de Instagram (Redacción de bio profesional, diseño de historias destacadas y enlaces efectivos).
+                        </div>
+                        <div class="modal-bonus" style="border-left-color: var(--dark); background-color: var(--gray-light);">
+                            <strong><i class="fas fa-gem" style="color:var(--dark); margin-right: 5px;"></i> BONUS PREMIUM:</strong> 1 reunión mensual de seguimiento estratégico. Revisión general de marca, propuesta de mejoras y acompañamiento cercano en la planificación.
+                        </div>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">Pensado para marcas que necesitan una presencia más fuerte, constante y estratégica en redes.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información y contratar el Pack BLOOM de Gestión en Redes Sociales.'
+            }
+        ]
+    },
+    'pauta': {
+        title: 'Pauta Publicitaria',
+        subtitle: 'Campañas de Alto Impacto',
+        packs: [
+            {
+                name: 'Pack ACACIA (Meta Ads)',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye la estrategia en Meta Ads?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Estrategia a medida:</strong> Campañas basadas en tus objetivos comerciales. Si es FB Ads (Campaña con A/B testing) o IG Ads (Promoción estratégica).</li>
+                            <li><i class="fas fa-check"></i> <strong>Textos Optimizados:</strong> Redacción de copys persuasivos e investigación de palabras clave.</li>
+                            <li><i class="fas fa-check"></i> <strong>Contenido Publicitario:</strong> Diseño del material gráfico o audiovisual necesario para la campaña.</li>
+                            <li><i class="fas fa-check"></i> <strong>Asesoramiento:</strong> Te acompaño en la definición del presupuesto ideal para cumplir tus metas.</li>
+                        </ul>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información y contratar el Pack Acacia de Meta Ads.'
+            },
+            {
+                name: 'Pack ACACIA (Google Ads)',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye el servicio de Google Ads?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Relevamiento Inicial:</strong> Revisión estratégica del sitio, análisis de palabras clave e investigación competitiva.</li>
+                            <li><i class="fas fa-check"></i> <strong>Configuración Técnica:</strong> Google Tag Manager, Analytics 4, Search Console y setup de eventos de conversión.</li>
+                            <li><i class="fas fa-check"></i> <strong>Campaña de Búsqueda:</strong> Estructuración de anuncios, redacción orientada a CTR y segmentación precisa por ubicación y dispositivos.</li>
+                            <li><i class="fas fa-check"></i> <strong>Monitoreo y Optimización:</strong> Supervisión diaria en los primeros 7 días, ajustes por rendimiento e informe inicial de métricas clave.</li>
+                        </ul>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información y contratar el servicio de Google Ads.'
+            }
+        ]
+    },
+    'estrategia': {
+        title: 'Creación de Estrategia',
+        subtitle: 'Tu Hoja de Ruta al Crecimiento',
+        packs: [
+            {
+                name: 'Pack ESTRATEGIA',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye este servicio?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Análisis Estratégico:</strong> Evaluación actual de la marca, revisión de perfil y detección de oportunidades de mejora.</li>
+                            <li><i class="fas fa-check"></i> <strong>Desarrollo de Estrategia:</strong> Definición de objetivos y pilares de contenido para generar conexión, autoridad y ventas.</li>
+                            <li><i class="fas fa-check"></i> <strong>Público Objetivo:</strong> Análisis del buyer persona y recomendaciones para comunicar de forma más efectiva.</li>
+                            <li><i class="fas fa-check"></i> <strong>Plan de Comunicación:</strong> Lineamientos de tono de voz, estilo visual y formatos sugeridos según tus objetivos.</li>
+                            <li><i class="fas fa-check"></i> <strong>Propuesta de Contenido:</strong> Ideas estratégicas y organización base para comunicar con coherencia y constancia.</li>
+                            <li><i class="fas fa-check"></i> <strong>Entrega Final:</strong> Documento estratégico en PDF con recomendaciones accionables y claras.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-gift" style="color:var(--primary); margin-right: 5px;"></i> BONUS EXCLUSIVO:</strong> Devolución personalizada por videollamada o reunión. Un espacio para explicar la estrategia y evacuar todas tus dudas.
+                        </div>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">Ideal para marcas que necesitan claridad, orden y dirección antes de invertir en gestión de redes o publicidad.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información sobre el Pack ESTRATEGIA.'
+            }
+        ]
+    },
+    'diseno': {
+        title: 'Diseño de Piezas (Contenido)',
+        subtitle: 'Estética y Funcionalidad',
+        packs: [
+            {
+                name: 'Pack DISEÑO',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye este servicio?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Diseño de Piezas:</strong> Posteos, carruseles y placas para historias adaptadas a distintos formatos.</li>
+                            <li><i class="fas fa-check"></i> <strong>Desarrollo Visual Alineado:</strong> Diseños pensados según tu identidad, con coherencia estética en tipografías y colores.</li>
+                            <li><i class="fas fa-check"></i> <strong>Diseño Orientado:</strong> Piezas creadas para comunicar estratégicamente, informando, conectando y vendiendo.</li>
+                            <li><i class="fas fa-check"></i> <strong>Edición y Armado:</strong> Organización visual y jerarquización de textos para captar la atención de tu audiencia.</li>
+                            <li><i class="fas fa-check"></i> <strong>Entrega Final:</strong> Piezas listas para publicar en el formato digital acordado.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-gift" style="color:var(--primary); margin-right: 5px;"></i> BONUS EXCLUSIVO:</strong> Revisión estética general del feed o perfil con sugerencias visuales para mantener una imagen más profesional.
+                        </div>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">Ideal para marcas que ya tienen definido qué comunicar, pero necesitan una imagen visual profesional y atractiva.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera cotizar el Pack de Diseño de Piezas (Contenido).'
+            }
+        ]
+    },
+    'web': {
+        title: 'Desarrollo de Software',
+        subtitle: 'Soluciones Digitales a Medida',
+        packs: [
+            {
+                name: 'Desarrollo Web Institucional',
+                content: `
+                    <div class="modal-features">
+                        <h4>Tu Casa Digital Profesional</h4>
+                        <ul>
+                            <li><i class="fas fa-laptop"></i> <strong>Diseño Adaptable:</strong> Versión responsive (celular, tablet y PC) adaptada a tu identidad de marca.</li>
+                            <li><i class="fas fa-sitemap"></i> <strong>Estructura Completa:</strong> Secciones de Quiénes Somos, Servicios, Redes Sociales y catálogos.</li>
+                            <li><i class="fas fa-comments"></i> <strong>Herramientas de Contacto:</strong> Botón de WhatsApp integrado, formularios de contacto y mapa interactivo.</li>
+                            <li><i class="fas fa-lock"></i> <strong>Seguridad y Rendimiento:</strong> Certificado SSL, protección DDoS y copias de seguridad.</li>
+                            <li><i class="fas fa-globe"></i> <strong>Beneficios Adicionales:</strong> 12 meses de dominio web totalmente gratis y soporte personalizado.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-paint-roller" style="color:var(--primary); margin-right: 5px;"></i> BONUS DE PLANTILLAS:</strong> Te compartimos 4 opciones de plantillas web modernas, dinámicas y creativas para elegir la que mejor se adapte a tu marca.
+                        </div>
+                        <div class="modal-bonus" style="border-left-color: var(--dark); background-color: var(--gray-light);">
+                            <strong><i class="fas fa-tools" style="color:var(--dark); margin-right: 5px;"></i> BONUS DE MANTENIMIENTO:</strong> Mantenimiento técnico del sitio totalmente gratis por el primer mes.
+                        </div>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información sobre el servicio de Desarrollo Web.'
+            },
+            {
+                name: 'Desarrollo Mobile (iOS y Android)',
+                content: `
+                    <div class="modal-features">
+                        <h4>Llevá tu negocio al bolsillo de tus clientes</h4>
+                        <ul>
+                            <li><i class="fab fa-apple"></i> <strong>Apps 100% Nativas:</strong> Desarrollo a medida para su publicación oficial en App Store (Apple) y Google Play Store (Android).</li>
+                            <li><i class="fas fa-mobile-alt"></i> <strong>Experiencia de Usuario Premium:</strong> Diseño de interfaces (UI/UX) intuitivas, fluidas y enfocadas en la retención del usuario.</li>
+                            <li><i class="fas fa-rocket"></i> <strong>Tecnología de Vanguardia:</strong> Desarrolladas en React Native para garantizar un rendimiento óptimo, rápido y escalable.</li>
+                            <li><i class="fas fa-cogs"></i> <strong>Funciones Avanzadas:</strong> Integración de notificaciones push, geolocalización, pasarelas de pago o cualquier funcionalidad a demanda.</li>
+                            <li><i class="fas fa-cloud-upload-alt"></i> <strong>Acompañamiento Integral:</strong> Nos encargamos de todo el proceso, desde el código hasta la subida exitosa a las tiendas.</li>
+                        </ul>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">Ideal para fidelizar clientes, crear e-commerce nativos o digitalizar servicios exclusivos.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera cotizar el Desarrollo de una Aplicación Mobile (iOS/Android).'
+            },
+            {
+                name: 'Aplicaciones de Escritorio (Windows)',
+                content: `
+                    <div class="modal-features">
+                        <h4>Sistemas operativos a la medida de tu empresa</h4>
+                        <ul>
+                            <li><i class="fab fa-windows"></i> <strong>Desarrollo 100% Personalizado:</strong> Aplicaciones de escritorio para Windows creadas específicamente para resolver las necesidades de tu negocio.</li>
+                            <li><i class="fas fa-boxes"></i> <strong>Sistemas de Gestión:</strong> Ideal para control de stock, facturación, bases de datos de clientes (CRM) o herramientas operativas internas.</li>
+                            <li><i class="fas fa-tachometer-alt"></i> <strong>Rendimiento Robusto:</strong> Software estable, seguro y rápido que optimiza los flujos de trabajo diarios de tu equipo.</li>
+                            <li><i class="fas fa-network-wired"></i> <strong>Conectividad Híbrida:</strong> Opciones de funcionamiento offline (sin internet) con sincronización de datos en la nube.</li>
+                            <li><i class="fas fa-headset"></i> <strong>Soporte y Capacitación:</strong> Entrega del sistema llave en mano con capacitación básica para que tu equipo aprenda a utilizarlo.</li>
+                        </ul>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">La solución definitiva para automatizar procesos internos y tener el control total de tu empresa.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera cotizar el Desarrollo de un Sistema/Aplicación para Windows.'
+            }
+        ]
+    },
+    'identidad': {
+        title: 'Identidad de Marca',
+        subtitle: 'Branding que Perdura',
+        packs: [
+            {
+                name: 'Pack ESSENCE',
+                content: `
+                    <div class="modal-features">
+                        <h4>¿Qué incluye este servicio?</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> <strong>Análisis Inicial:</strong> Relevamiento profundo de la esencia, valores, diferencial competitivo y oportunidades de mejora de tu marca.</li>
+                            <li><i class="fas fa-check"></i> <strong>Identidad Verbal y Conceptual:</strong> Definición de personalidad, tono de voz, estilo y concepto general alineado a tus objetivos.</li>
+                            <li><i class="fas fa-check"></i> <strong>Identidad Visual:</strong> Definición de paleta cromática, selección tipográfica y estilo gráfico sugerido para redes y web.</li>
+                            <li><i class="fas fa-check"></i> <strong>Diseño de Logo:</strong> Propuesta de logo personalizada con hasta 3 instancias de ajustes o cambios.</li>
+                            <li><i class="fas fa-check"></i> <strong>Dirección de Marca:</strong> Lineamientos estratégicos para aplicar con consistencia en todos tus canales de comunicación.</li>
+                            <li><i class="fas fa-check"></i> <strong>Entrega Final:</strong> Manual en PDF, archivos de logo y recomendaciones para implementar en entornos digitales.</li>
+                        </ul>
+                        <div class="modal-bonus">
+                            <strong><i class="fas fa-gift" style="color:var(--primary); margin-right: 5px;"></i> BONUS EXCLUSIVO:</strong> Reunión de entrega y presentation de la identidad desarrollada para explicar criterios, aplicación y resolver dudas.
+                        </div>
+                        <p style="margin-top:15px; font-style:italic; color:var(--gray-text);">Servicio diseñado para marcas que desean construir o redefinir su identidad con una base estratégica, visual y conceptual sólida.</p>
+                    </div>
+                `,
+                wspMessage: 'Hola Brenda, quisiera más información sobre el Pack ESSENCE de Identidad de Marca.'
+            }
+        ]
+    }
 };
 
 // ==========================================
@@ -53,12 +281,12 @@ const Servicios = () => `
                 <h2>Te presento mis servicios</h2>
             </div>
             <div class="servicios-grid">
-                <div class="servicio-card bg-serv-1" data-title="Gestión en Redes Sociales" data-desc="Construimos comunidades sólidas y auténticas. Nos enfocamos en conectar tu marca con tu audiencia ideal a través de contenido estratégico, interacción constante y análisis de tendencias para asegurar un crecimiento real."><h3>Gestión en Redes Sociales</h3><p>Construimos comunidades sólidas y auténticas.</p></div>
-                <div class="servicio-card bg-serv-2" data-title="Pauta Publicitaria" data-desc="Campañas optimizadas en Meta Ads y Google Ads. Maximizamos tu retorno de inversión (ROI) segmentando al detalle para llegar exactamente a las personas que buscan lo que tu marca tiene para ofrecer."><h3>Pauta Publicitaria</h3><p>Campañas optimizadas en Meta Ads y Google Ads.</p></div>
-                <div class="servicio-card bg-serv-3" data-title="Creación de Estrategia" data-desc="Rutas claras para el crecimiento de tu negocio. Analizamos tu mercado, competencia y objetivos para diseñar un plan de acción a medida que garantice resultados escalables a largo plazo."><h3>Creación de Estrategia</h3><p>Rutas claras para el crecimiento de tu negocio.</p></div>
-                <div class="servicio-card bg-serv-4" data-title="Diseño en Canva" data-desc="Piezas visuales atractivas y funcionales. Creamos plantillas y diseños personalizados que mantienen una estética profesional y completamente coherente con la identidad y valores de tu marca."><h3>Diseño en Canva</h3><p>Piezas visuales atractivas y funcionales.</p></div>
-                <div class="servicio-card bg-serv-5" data-title="Desarrollo Web" data-desc="Tu casa digital rápida, segura y estéticamente impecable. Desarrollamos sitios web optimizados para el posicionamiento (SEO) y pensados estratégicamente para convertir visitantes en clientes."><h3>Desarrollo Web</h3><p>Tu casa digital rápida, segura y estéticamente impecable.</p></div>
-                <div class="servicio-card bg-serv-6" data-title="Identidad de Marca" data-desc="Desarrollo de branding que conecta y perdura. Definimos tu voz, paleta de colores, tipografías y logotipo para que tu marca transmita su verdadera esencia en cada punto de contacto."><h3>Identidad de Marca</h3><p>Desarrollo de branding que conecta y perdura.</p></div>
+                <div class="servicio-card bg-serv-1" data-id="redes-sociales"><h3>Gestión en Redes Sociales</h3><p>Construimos comunidades sólidas y auténticas.</p></div>
+                <div class="servicio-card bg-serv-2" data-id="pauta"><h3>Pauta Publicitaria</h3><p>Campañas optimizadas en Meta Ads y Google Ads.</p></div>
+                <div class="servicio-card bg-serv-3" data-id="estrategia"><h3>Creación de Estrategia</h3><p>Rutas claras para el crecimiento de tu negocio.</p></div>
+                <div class="servicio-card bg-serv-4" data-id="diseno"><h3>Diseño de Piezas (Contenido)</h3><p>Piezas visuales atractivas y funcionales.</p></div>
+                <div class="servicio-card bg-serv-5" data-id="web"><h3>Desarrollo Web/Mobile/Windows</h3><p>Tu casa digital rápida, segura y estéticamente impecable.</p></div>
+                <div class="servicio-card bg-serv-6" data-id="identidad"><h3>Identidad de Marca</h3><p>Desarrollo de branding que conecta y perdura.</p></div>
             </div>
         </div>
     </section>
@@ -281,10 +509,10 @@ const ModalsYExtras = () => `
     </div>
     
     <div id="servicio-modal" class="modal-overlay modal-centered">
-        <div class="modal-content text-center" style="max-width: 600px;">
+        <div class="modal-content text-left" style="max-width: 700px; padding-top: 40px; border-top: 8px solid var(--primary);">
             <span class="cerrar-modal-servicio" style="position: absolute; top: 15px; right: 25px; font-size: 2.5rem; cursor: pointer; color: var(--gray-text); z-index: 2001;">×</span>
-            <h2 id="servicio-modal-title" class="modal-title-gold" style="margin-top: 10px;"></h2>
-            <p id="servicio-modal-desc" style="font-size: 1.25rem; color: var(--gray-text); margin-top: 15px; line-height: 1.8;"></p>
+            <div id="servicio-modal-content-inject" class="servicio-modal-scroll">
+                </div>
         </div>
     </div>
 `;
@@ -387,18 +615,73 @@ function initEffects() {
         });
     });
 
-    // NUEVO: Lógica Popup Servicios
+    // LÓGICA POPUP SERVICIOS (Navegación en 2 Pasos)
+    const modalBodyInject = document.getElementById('servicio-modal-content-inject');
+
+    // Función 1: Renderiza las tarjetas de los packs
+    function renderPacksList(serviceId) {
+        const data = servicesDetails[serviceId];
+        let packsCardsHtml = data.packs.map((pack, index) => `
+            <div class="pack-card" data-service="${serviceId}" data-packindex="${index}">
+                <h3>${pack.name}</h3>
+                <span class="pack-arrow"><i class="fas fa-chevron-right"></i></span>
+            </div>
+        `).join('');
+
+        modalBodyInject.innerHTML = `
+            <h2 class="modal-title-gold" style="margin-bottom: 5px; font-size: 2.2rem; text-align: center;">${data.title}</h2>
+            <h3 class="modal-subtitle-gold">${data.subtitle}</h3>
+            <div class="packs-grid">
+                ${packsCardsHtml}
+            </div>
+        `;
+
+        // Al hacer click en un Pack, abrimos sus detalles
+        modalBodyInject.querySelectorAll('.pack-card').forEach(card => {
+            card.addEventListener('click', function() {
+                renderPackDetail(this.dataset.service, this.dataset.packindex);
+            });
+        });
+    }
+
+    // Función 2: Renderiza los detalles de un pack específico
+    function renderPackDetail(serviceId, packIndex) {
+        const data = servicesDetails[serviceId];
+        const pack = data.packs[packIndex];
+
+        // Se inyecta el botón volver (arriba a la izquierda), el título y los beneficios sin precios
+        modalBodyInject.innerHTML = `
+            <button class="btn-back-packs" data-service="${serviceId}">
+                <i class="fas fa-arrow-left"></i> Volver a Packs
+            </button>
+            
+            <h2 class="modal-title-gold" style="margin-bottom: 5px; font-size: 2.5rem; text-align: center; margin-top: 20px;">${pack.name}</h2>
+            <h3 class="modal-subtitle-gold">${data.title}</h3>
+            
+            <div class="modal-rich-text">
+                ${pack.content}
+            </div>
+            
+            <a href="https://wa.me/+5492213576210?text=${encodeURIComponent(pack.wspMessage)}" target="_blank" class="btn-shine-gold w-100" style="display: block; margin-top: 30px;">Quiero mi pack <i class="fab fa-whatsapp" style="margin-left: 8px;"></i></a>
+        `;
+
+        // Al hacer click en "Volver", llamamos a la Función 1
+        modalBodyInject.querySelector('.btn-back-packs').addEventListener('click', function() {
+            renderPacksList(this.dataset.service);
+        });
+    }
+
+    // Evento inicial: Al hacer click en un servicio en el Hero
     document.querySelectorAll('.servicio-card').forEach(card => {
         card.addEventListener('click', function() {
-            const title = document.getElementById('servicio-modal-title');
-            const desc = document.getElementById('servicio-modal-desc');
-            title.textContent = this.dataset.title;
-            desc.textContent = this.dataset.desc;
-            openModal('servicio-modal');
+            const id = this.dataset.id;
+            if(servicesDetails[id]) {
+                renderPacksList(id); // Cargamos la lista de packs
+                openModal('servicio-modal'); // Abrimos el modal
+            }
         });
     });
 
-    // Añadida la clase .cerrar-modal-servicio para que cierre
     document.querySelectorAll('.cerrar-modal, .cerrar-modal-gratuito, .cerrar-modal-servicio, .modal-overlay').forEach(el => {
         el.addEventListener('click', (e) => {
             if(e.target === el || e.target.classList.contains('flex-center')) closeModal();
