@@ -599,7 +599,7 @@ a { text-decoration: none; color: inherit; }
     z-index: 2000; opacity: 0; visibility: hidden; transition: var(--transition);
 }
 .modal-overlay.active { opacity: 1; visibility: visible; }
-.modal-content { background: var(--white); padding: 50px; border-radius: var(--radius); width: 90%; max-width: 700px; position: relative; transform: translateY(20px); transition: var(--transition); }
+.modal-content { background: var(--white); padding: 13px; border-radius: var(--radius); width: 90%; max-width: 700px; position: relative; transform: translateY(20px); transition: var(--transition); }
 .modal-overlay.active .modal-content { transform: translateY(0); }
 
 /* Nuevo Titulo Dorado Mayúsculas para Modal */
