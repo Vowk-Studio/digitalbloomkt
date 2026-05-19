@@ -461,7 +461,24 @@ const ModalsYExtras = () => `
             <p style="text-align: center; margin-bottom: 20px;">Selecciona los recursos y te los enviaremos.</p>
             <form id="form-contenido-gratuito" class="modern-form form-gratuito-scroll">
                 <div class="checkbox-grid">
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-seo-basico"><span>Guía de SEO Básico</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="convierte-tus-seguidores-en-clientes"><span>Convierte a tus seguidores en clientes y maximiza tus ventas</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="10-cierres-de-venta"><span>10 cierres de venta</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="10-ideas-aumentar-ventas-san-valentin"><span>10 ideas para aumentar las ventas en San Valentín</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="30-ideas-storytelling"><span>30 ideas de Storytelling Leadmagnet</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="30-dias-de-abundancia"><span>30 días de abundancia</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="boletin-de-estrategias-dia-del-padre"><span>Boletín de estrategias para vender en el Día del Padre</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="bonus-infalible"><span>Bonus Infalible</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-como-crecer-rapido-ig"><span>Ebook: Cómo crecer rápido en Instagram</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-500-ideas-de-contenido"><span>Ebook: 500 ideas de contenido</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="estrategias-infalibles-esta-navidad"><span>Estrategias infalibles para esta navidad</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-como-generar-ideas-de-contenido"><span>Guía: Cómo generar ideas de contenido Creativas y Efectivas</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="algoritmos-de-ig"><span>Los algoritmos de Instagram</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plan-de-contenidos"><span>Plan de contenidos</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-para-organizar-tus-promociones"><span>Plantilla para organizar tus promociones</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="superando-el-vertigo-ig"><span>Superando el vértigo en Instagram</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ventas-dia-de-la-madre"><span>Ventas Día de la Madre</span></label>
+
+                    <!-- <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-seo-basico"><span>Guía de SEO Básico</span></label>
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="checklist-marketing-digital"><span>Checklist de Marketing Digital</span></label>
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-copywriting-persuasivo"><span>Ebook de Copywriting Persuasivo</span></label>
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="curso-google-ads-avanzado"><span>Curso Google Ads Avanzado</span></label>
@@ -492,7 +509,7 @@ const ModalsYExtras = () => `
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-primeros-pasos-ecommerce"><span>Guía Primeros Pasos E-commerce</span></label>
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="consejos-crear-landing-page"><span>Consejos Landing Page Efectiva</span></label>
                     <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-estrategia-social-media"><span>Plantilla Estrategia Social Media</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-google-my-business"><span>Guía de Google My Business</span></label>
+                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-google-my-business"><span>Guía de Google My Business</span></label> -->
                 </div>
                 <input type="email" id="user-email-gratuito" placeholder="Tu Email" required style="margin-top:15px; width:100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size:1.1rem;">
                 <button type="submit" class="btn-shine-gold w-100" style="margin-top: 15px;">Solicitar</button>
