@@ -397,7 +397,7 @@ const Contacto = () => `
                 <div class="social-sidebar">
                     <a href="https://www.instagram.com/digitalbloomkt/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram de DigitalBloomKT"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                     <a href="https://www.facebook.com/share/16BipM7eHb/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook de DigitalBloomKT"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                    <a href="mailto:brendadujovich@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:brendadujovich@gmail.com" class="social-btn" aria-label="Email de DigitalBloomKT"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                     <a href="https://www.tiktok.com/@digitalbloomkt?lang=es-419" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok de DigitalBloomKT"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
                 </div>
                 
@@ -451,8 +451,8 @@ const Footer = () => `
 `;
 
 const ModalsYExtras = () => `
-    <a href="https://wa.me/+5492213576210?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/+5492213576210?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar a DigitalBloomKT por WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
     </a>
 
     <div id="contenido-gratuito-modal" class="modal-overlay">
@@ -521,7 +521,7 @@ const ModalsYExtras = () => `
     <div id="certificado-modal" class="modal-overlay modal-centered">
         <span class="cerrar-modal">×</span>
         <div class="modal-image-container flex-center">
-             <img id="img-certificado-modal" src="" alt="Certificado">
+             <img id="img-certificado-modal" alt="Certificado" width="1080" height="1920">
              <div id="modal-caption"></div>
         </div>
     </div>
