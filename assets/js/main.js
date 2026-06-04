@@ -248,27 +248,27 @@ const Header = () => `
     <header class="header anim-montaje">
         <div class="header-container">
             <div class="logo">
-                <img src="./assets/images/logo1.png" alt="DigitalBloomKT Logo">
+                <img src="./assets/images/logo1.webp" alt="Logo de DigitalBloomKT" width="700" height="700" fetchpriority="high">
             </div>
             <nav class="menu">
                 ${state.menuItems.map(item => `
                     <a href="#${item.id}" class="menu-item">${item.label}</a>
                 `).join('')}
             </nav>
-            <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            <button class="mobile-menu-btn" type="button" aria-label="Abrir menú"><i class="fas fa-bars" aria-hidden="true"></i></button>
         </div>
     </header>
 `;
 
 const Hero = () => `
-    <section id="hero" class="hero anim-montaje" style="animation-delay: 0.2s;">
+    <section id="hero" class="hero anim-montaje hero-delay">
         <div class="hero-content">
             <p class="hero-tagline">Estrategia & Creatividad</p>
-            <h2 class="hero-title">Donde tu marca <span>florece.</span></h2>
+            <h1 class="hero-title">Donde tu marca <span>florece.</span></h1>
             <a href="#servicios" class="btn-primary">Descubrir Servicios</a>
         </div>
-        <div class="hero-image-wrapper">
-             <img class="hero-image" src="./assets/images/fondo1.png" alt="DigitalBloomKT Background">
+        <div class="hero-image-wrapper" aria-hidden="true">
+             <img class="hero-image" src="./assets/images/fondo1.webp" alt="" width="499" height="500">
         </div>
     </section>
 `;
@@ -310,8 +310,8 @@ const QuienesSomos = () => `
             </div>
             <div class="content-image">
                  <div class="image-placeholder">
-                    <img src="./assets/images/perfil.png" alt="Brenda Dujovich" class="foto-perfil">
-                    <img src="./assets/images/logo1.png" alt="DigitalBloomKT Logo" class="logo-superpuesto">
+                    <img src="./assets/images/perfil.webp" alt="Brenda Dujovich, fundadora de DigitalBloomKT" class="foto-perfil" width="700" height="1244" loading="lazy" decoding="async">
+                    <img src="./assets/images/logo1.webp" alt="DigitalBloomKT" class="logo-superpuesto" width="700" height="700" loading="lazy" decoding="async">
                  </div>
             </div>
         </div>
@@ -331,9 +331,9 @@ const ContenidoGratuito = () => `
 `;
 
 const Resenas = () => `
-    <section id="reseñas-section" class="reseñas-section section-padding">
-        <img src="assets/images/flor-testimonio1.png" class="flor-bg flor-tl" alt="">
-        <img src="assets/images/flor-testimonio2.png" class="flor-bg flor-br" alt="">
+    <section id="resenas" class="reseñas-section section-padding">
+        <img src="assets/images/flor-testimonio1.webp" class="flor-bg flor-tl" alt="" width="362" height="272" loading="lazy" decoding="async">
+        <img src="assets/images/flor-testimonio2.webp" class="flor-bg flor-br" alt="" width="500" height="500" loading="lazy" decoding="async">
         
         <div class="container content-relative">
             <div class="section-header center">
@@ -341,10 +341,10 @@ const Resenas = () => `
                 <h2>TESTIMONIOS</h2>
             </div>
             <div class="reseñas-grid">
-                <div class="review-card"><img src="assets/images/res-img.jpg" alt="Reseña 1"></div>
-                <div class="review-card"><img src="assets/images/res-img2.jpg" alt="Reseña 2"></div>
-                <div class="review-card"><img src="assets/images/res-img3.jpg" alt="Reseña 3"></div>
-                <div class="review-card"><img src="assets/images/res-img4.jpg" alt="Reseña 4"></div>
+                <div class="review-card"><img src="assets/images/res-img.webp" alt="Reseña de cliente de DigitalBloomKT" width="500" height="1015" loading="lazy" decoding="async"></div>
+                <div class="review-card"><img src="assets/images/res-img2.webp" alt="Reseña de cliente sobre marketing digital" width="500" height="989" loading="lazy" decoding="async"></div>
+                <div class="review-card"><img src="assets/images/res-img3.webp" alt="Testimonio de cliente sobre servicios de DigitalBloomKT" width="500" height="1012" loading="lazy" decoding="async"></div>
+                <div class="review-card"><img src="assets/images/res-img4.webp" alt="Opinión de cliente de DigitalBloomKT" width="500" height="1012" loading="lazy" decoding="async"></div>
             </div>
             <div class="ver-mas-container">
                 <a href="https://www.instagram.com/stories/highlights/17844320421113426/" class="btn-instagram-shine" target="_blank" rel="noopener noreferrer">
@@ -395,27 +395,28 @@ const Contacto = () => `
             
             <div class="contact-layout-centered">
                 <div class="social-sidebar">
-                    <a href="https://www.instagram.com/digitalbloomkt/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/share/16BipM7eHb/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/digitalbloomkt/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram de DigitalBloomKT"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/share/16BipM7eHb/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook de DigitalBloomKT"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
                     <a href="mailto:brendadujovich@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.tiktok.com/@digitalbloomkt?lang=es-419" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.tiktok.com/@digitalbloomkt?lang=es-419" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok de DigitalBloomKT"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
                 </div>
                 
                 <div class="contact-form-wrapper">
-                    <form id="contactForm" class="modern-form">
+                    <form id="contactForm" class="modern-form" method="post" action="./enviar_consulta.php">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required>
                         </div>
                         <div class="form-group">
                             <label for="consulta">Mensaje</label>
                             <textarea id="consulta" name="consulta" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
                         </div>
-                        <button type="button" id="enviarConsultaBtn" class="btn-shine-gold w-100">Enviar Consulta</button>
+                        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <button type="submit" id="enviarConsultaBtn" class="btn-shine-gold w-100">Enviar Consulta</button>
                     </form>
                 </div>
             </div>
@@ -722,16 +723,17 @@ function initEffects() {
     const contactForm = document.getElementById('contactForm');
     const enviarConsultaBtn = document.getElementById('enviarConsultaBtn');
     if (enviarConsultaBtn && contactForm) {
-        enviarConsultaBtn.addEventListener('click', function() {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
             const formData = new FormData(contactForm);
-            const originalText = this.innerText;
-            this.innerText = "Enviando..."; this.disabled = true;
+            const originalText = enviarConsultaBtn.innerText;
+            enviarConsultaBtn.innerText = "Enviando..."; enviarConsultaBtn.disabled = true;
 
-            fetch('enviar_consulta.php', { method: 'POST', body: formData })
+            fetch(contactForm.getAttribute('action') || './enviar_consulta.php', { method: 'POST', body: formData })
             .then(res => res.text()).then(data => { alert(data); contactForm.reset(); })
             .catch(() => alert("Error enviando consulta."))
-            .finally(() => { this.innerText = originalText; this.disabled = false; });
+            .finally(() => { enviarConsultaBtn.innerText = originalText; enviarConsultaBtn.disabled = false; });
         });
     }
 

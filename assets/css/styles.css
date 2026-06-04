@@ -201,7 +201,7 @@ a { text-decoration: none; color: inherit; }
     background-color: var(--primary); transition: var(--transition);
 }
 .menu-item:hover::after { width: 100%; }
-.mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; }
+.mobile-menu-btn { display: none; font-size: 1.8rem; cursor: pointer; background: none; border: none; color: inherit; }
 
 /* ==========================================
    3. HERO SECTION
@@ -215,6 +215,7 @@ a { text-decoration: none; color: inherit; }
     overflow: hidden;
     padding-top: 100px; 
 }
+.hero-delay { animation-delay: 0.2s; }
 .hero-content {
     width: 90%;
     max-width: 1300px;
@@ -289,12 +290,12 @@ a { text-decoration: none; color: inherit; }
     text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7), 0px 0px 10px rgba(255, 255, 255, 0.5);
 }
 
-.bg-serv-1 { background-image: url('../images/flor-serv1.png'); }
-.bg-serv-2 { background-image: url('../images/flor-serv2.png'); }
-.bg-serv-3 { background-image: url('../images/flor-serv3.png'); }
-.bg-serv-4 { background-image: url('../images/flor-serv4.png'); }
-.bg-serv-5 { background-image: url('../images/flor-serv5.png'); }
-.bg-serv-6 { background-image: url('../images/flor-serv6.png'); }
+.bg-serv-1 { background-image: url('../images/flor-serv1.webp'); }
+.bg-serv-2 { background-image: url('../images/flor-serv2.webp'); }
+.bg-serv-3 { background-image: url('../images/flor-serv3.webp'); }
+.bg-serv-4 { background-image: url('../images/flor-serv4.webp'); }
+.bg-serv-5 { background-image: url('../images/flor-serv5.webp'); }
+.bg-serv-6 { background-image: url('../images/flor-serv6.webp'); }
 
 .servicio-card h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--white); }
 .servicio-card p { color: #f0f0f0; font-size: 1.15rem; }
@@ -374,9 +375,18 @@ a { text-decoration: none; color: inherit; }
 
 .reseñas-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 50px;
+    align-items: start;
 }
-.review-card { background: var(--white); padding: 10px; border-radius: var(--radius); box-shadow: var(--shadow-md); z-index: 2;}
-.review-card img { width: 100%; border-radius: 8px; transition: var(--transition); }
+.review-card { background: var(--white); padding: 10px; border-radius: var(--radius); box-shadow: var(--shadow-md); z-index: 2; overflow: hidden; }
+.review-card img {
+    display: block;
+    width: 100%;
+    height: clamp(360px, 38vw, 520px);
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 8px;
+    transition: var(--transition);
+}
 .review-card:hover img { transform: scale(1.02); }
 
 .ver-mas-container { text-align: center; margin-top: 40px;}
@@ -413,7 +423,7 @@ a { text-decoration: none; color: inherit; }
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('../images/fondo-certificados-section.png') center/cover fixed; /* Fondo difuso general */
+    background: url('../images/fondo-certificados-section.webp') center/cover fixed; /* Fondo difuso general */
     opacity: 0.5; /* Sutil */
     z-index: -1;
 }
@@ -432,6 +442,8 @@ a { text-decoration: none; color: inherit; }
 
 /* Rediseño Moderno: Tarjetas de Logros con Medalla CSS */
 .certificado-circulo {
+    appearance: none;
+    font: inherit;
     width: 220px; /* Ancho de la tarjeta */
     min-height: 250px; /* Alto de la tarjeta */
     background-color: var(--white);
@@ -556,6 +568,13 @@ a { text-decoration: none; color: inherit; }
 }
 .form-group input:focus, .form-group textarea:focus {
     outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
 }
 
 /* ==========================================

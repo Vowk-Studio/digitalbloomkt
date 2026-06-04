@@ -1,0 +1,351 @@
+{
+  "target": "http://127.0.0.1:8099/",
+  "scannedAt": "2026-06-04T18:50:40.982Z",
+  "score": 100,
+  "counts": {
+    "pass": 26,
+    "warn": 0,
+    "fail": 0,
+    "resources": 22
+  },
+  "checks": [
+    {
+      "category": "HTTP",
+      "name": "Pagina principal responde 200",
+      "status": "pass",
+      "detail": "Status 200",
+      "evidence": "http://127.0.0.1:8099/"
+    },
+    {
+      "category": "SEO",
+      "name": "Titulo entre 10 y 70 caracteres",
+      "status": "pass",
+      "detail": "45 caracteres",
+      "evidence": "DigitalBloomKT | Agencia de Marketing Digital"
+    },
+    {
+      "category": "SEO",
+      "name": "Meta description presente",
+      "status": "pass",
+      "detail": "146 caracteres",
+      "evidence": "Agencia de marketing digital en Argentina. Estrategia, redes sociales, pauta publicitaria, branding y desarrollo web para hacer florecer tu marca."
+    },
+    {
+      "category": "SEO",
+      "name": "Meta description en rango recomendado",
+      "status": "pass",
+      "detail": "146 caracteres",
+      "evidence": ""
+    },
+    {
+      "category": "SEO",
+      "name": "Canonical presente",
+      "status": "pass",
+      "detail": "https://digitalbloomkt.com/",
+      "evidence": ""
+    },
+    {
+      "category": "SEO",
+      "name": "Meta robots indexable",
+      "status": "pass",
+      "detail": "index, follow, max-image-preview:large",
+      "evidence": ""
+    },
+    {
+      "category": "SEO",
+      "name": "Un unico H1",
+      "status": "pass",
+      "detail": "1 H1",
+      "evidence": "Donde tu marca florece."
+    },
+    {
+      "category": "SEO",
+      "name": "Encabezados visibles",
+      "status": "pass",
+      "detail": "15 encabezados",
+      "evidence": ""
+    },
+    {
+      "category": "SEO",
+      "name": "Charset UTF-8 declarado",
+      "status": "pass",
+      "detail": "UTF-8",
+      "evidence": ""
+    },
+    {
+      "category": "Movil",
+      "name": "Viewport responsive declarado",
+      "status": "pass",
+      "detail": "width=device-width, initial-scale=1.0",
+      "evidence": ""
+    },
+    {
+      "category": "SEO",
+      "name": "JSON-LD valido",
+      "status": "pass",
+      "detail": "1/1 bloques validos",
+      "evidence": ""
+    },
+    {
+      "category": "Imagenes",
+      "name": "Todas las imagenes tienen alt",
+      "status": "pass",
+      "detail": "0 imagenes sin alt",
+      "evidence": ""
+    },
+    {
+      "category": "Links",
+      "name": "Enlaces internos presentes",
+      "status": "pass",
+      "detail": "9 enlaces internos",
+      "evidence": ""
+    },
+    {
+      "category": "Links",
+      "name": "Enlaces externos presentes",
+      "status": "pass",
+      "detail": "4 enlaces externos",
+      "evidence": ""
+    },
+    {
+      "category": "Links",
+      "name": "Anclas internas validas",
+      "status": "pass",
+      "detail": "",
+      "evidence": ""
+    },
+    {
+      "category": "Seguridad",
+      "name": "Links target blank con rel seguro",
+      "status": "pass",
+      "detail": "0 links sin noopener/noreferrer",
+      "evidence": ""
+    },
+    {
+      "category": "Conversion",
+      "name": "Formulario de contacto detectable",
+      "status": "pass",
+      "detail": "1 formularios",
+      "evidence": ""
+    },
+    {
+      "category": "Conversion",
+      "name": "Formulario usa POST y action",
+      "status": "pass",
+      "detail": "",
+      "evidence": ""
+    },
+    {
+      "category": "Recursos",
+      "name": "Recursos locales responden OK",
+      "status": "pass",
+      "detail": "0 fallidos de 22",
+      "evidence": ""
+    },
+    {
+      "category": "Performance",
+      "name": "Peso HTML menor a 100 KB",
+      "status": "pass",
+      "detail": "18416 bytes",
+      "evidence": ""
+    },
+    {
+      "category": "Performance",
+      "name": "Peso local inicial razonable",
+      "status": "pass",
+      "detail": "687760 bytes incluyendo recursos locales detectados",
+      "evidence": ""
+    },
+    {
+      "category": "Indexacion",
+      "name": "robots.txt disponible",
+      "status": "pass",
+      "detail": "Status 200",
+      "evidence": ""
+    },
+    {
+      "category": "Indexacion",
+      "name": "robots.txt declara sitemap",
+      "status": "pass",
+      "detail": "",
+      "evidence": ""
+    },
+    {
+      "category": "Indexacion",
+      "name": "sitemap.xml disponible",
+      "status": "pass",
+      "detail": "Status 200",
+      "evidence": "http://127.0.0.1:8099/sitemap.xml"
+    },
+    {
+      "category": "Indexacion",
+      "name": "sitemap contiene URL canonica",
+      "status": "pass",
+      "detail": "",
+      "evidence": ""
+    },
+    {
+      "category": "Usabilidad",
+      "name": "Favicon disponible",
+      "status": "pass",
+      "detail": "Status 200",
+      "evidence": "http://127.0.0.1:8099/favicon.ico"
+    }
+  ],
+  "resources": [
+    {
+      "url": "http://127.0.0.1:8099/favicon.ico",
+      "status": 200,
+      "bytes": 32038,
+      "contentType": "image/x-icon",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/favicon-32x32.png",
+      "status": 200,
+      "bytes": 3220,
+      "contentType": "image/png",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/apple-touch-icon.png",
+      "status": 200,
+      "bytes": 33245,
+      "contentType": "image/png",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/site.webmanifest",
+      "status": 200,
+      "bytes": 371,
+      "contentType": "application/manifest+json",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/css/styles.css",
+      "status": 200,
+      "bytes": 30271,
+      "contentType": "text/css",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/js/main.js",
+      "status": 200,
+      "bytes": 53143,
+      "contentType": "text/javascript",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/logo1.webp",
+      "status": 200,
+      "bytes": 34532,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/fondo1.webp",
+      "status": 200,
+      "bytes": 36058,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/perfil.webp",
+      "status": 200,
+      "bytes": 36764,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-testimonio1.webp",
+      "status": 200,
+      "bytes": 20272,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-testimonio2.webp",
+      "status": 200,
+      "bytes": 21614,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/res-img.webp",
+      "status": 200,
+      "bytes": 52716,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/res-img2.webp",
+      "status": 200,
+      "bytes": 39434,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/res-img3.webp",
+      "status": 200,
+      "bytes": 64698,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/res-img4.webp",
+      "status": 200,
+      "bytes": 56456,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv1.webp",
+      "status": 200,
+      "bytes": 21614,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv2.webp",
+      "status": 200,
+      "bytes": 14232,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv3.webp",
+      "status": 200,
+      "bytes": 20996,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv4.webp",
+      "status": 200,
+      "bytes": 13810,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv5.webp",
+      "status": 200,
+      "bytes": 20272,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/flor-serv6.webp",
+      "status": 200,
+      "bytes": 13130,
+      "contentType": "application/octet-stream",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8099/assets/images/fondo-certificados-section.webp",
+      "status": 200,
+      "bytes": 50458,
+      "contentType": "application/octet-stream",
+      "ok": true
+    }
+  ]
+}
