@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEO local report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; color: #202124; }
+    h1 { margin-bottom: 0; }
+    .score { font-size: 48px; font-weight: 700; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f6f6f6; text-align: left; }
+    tr.pass td:nth-child(3) { color: #137333; font-weight: 700; }
+    tr.warn td:nth-child(3) { color: #b06000; font-weight: 700; }
+    tr.fail td:nth-child(3) { color: #b3261e; font-weight: 700; }
+    .meta { color: #5f6368; }
+  </style>
+</head>
+<body>
+  <h1>SEO local report</h1>
+  <p class="meta">http://127.0.0.1:8099/ - 2026-06-04T18:50:40.982Z</p>
+  <div class="score">100/100</div>
+  <p>PASS: 26 | WARN: 0 | FAIL: 0</p>
+  <h2>Checks</h2>
+  <table>
+    <thead><tr><th>Categoria</th><th>Check</th><th>Estado</th><th>Detalle</th><th>Evidencia</th></tr></thead>
+    <tbody>
+    <tr class="pass">
+      <td>HTTP</td>
+      <td>Pagina principal responde 200</td>
+      <td>PASS</td>
+      <td>Status 200</td>
+      <td>http://127.0.0.1:8099/</td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Titulo entre 10 y 70 caracteres</td>
+      <td>PASS</td>
+      <td>45 caracteres</td>
+      <td>DigitalBloomKT | Agencia de Marketing Digital</td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Meta description presente</td>
+      <td>PASS</td>
+      <td>146 caracteres</td>
+      <td>Agencia de marketing digital en Argentina. Estrategia, redes sociales, pauta publicitaria, branding y desarrollo web para hacer florecer tu marca.</td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Meta description en rango recomendado</td>
+      <td>PASS</td>
+      <td>146 caracteres</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Canonical presente</td>
+      <td>PASS</td>
+      <td>https://digitalbloomkt.com/</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Meta robots indexable</td>
+      <td>PASS</td>
+      <td>index, follow, max-image-preview:large</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Un unico H1</td>
+      <td>PASS</td>
+      <td>1 H1</td>
+      <td>Donde tu marca florece.</td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Encabezados visibles</td>
+      <td>PASS</td>
+      <td>15 encabezados</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>Charset UTF-8 declarado</td>
+      <td>PASS</td>
+      <td>UTF-8</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Movil</td>
+      <td>Viewport responsive declarado</td>
+      <td>PASS</td>
+      <td>width=device-width, initial-scale=1.0</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>SEO</td>
+      <td>JSON-LD valido</td>
+      <td>PASS</td>
+      <td>1/1 bloques validos</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Imagenes</td>
+      <td>Todas las imagenes tienen alt</td>
+      <td>PASS</td>
+      <td>0 imagenes sin alt</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Links</td>
+      <td>Enlaces internos presentes</td>
+      <td>PASS</td>
+      <td>9 enlaces internos</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Links</td>
+      <td>Enlaces externos presentes</td>
+      <td>PASS</td>
+      <td>4 enlaces externos</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Links</td>
+      <td>Anclas internas validas</td>
+      <td>PASS</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Seguridad</td>
+      <td>Links target blank con rel seguro</td>
+      <td>PASS</td>
+      <td>0 links sin noopener/noreferrer</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Conversion</td>
+      <td>Formulario de contacto detectable</td>
+      <td>PASS</td>
+      <td>1 formularios</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Conversion</td>
+      <td>Formulario usa POST y action</td>
+      <td>PASS</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Recursos</td>
+      <td>Recursos locales responden OK</td>
+      <td>PASS</td>
+      <td>0 fallidos de 22</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Performance</td>
+      <td>Peso HTML menor a 100 KB</td>
+      <td>PASS</td>
+      <td>18416 bytes</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Performance</td>
+      <td>Peso local inicial razonable</td>
+      <td>PASS</td>
+      <td>687760 bytes incluyendo recursos locales detectados</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Indexacion</td>
+      <td>robots.txt disponible</td>
+      <td>PASS</td>
+      <td>Status 200</td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Indexacion</td>
+      <td>robots.txt declara sitemap</td>
+      <td>PASS</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Indexacion</td>
+      <td>sitemap.xml disponible</td>
+      <td>PASS</td>
+      <td>Status 200</td>
+      <td>http://127.0.0.1:8099/sitemap.xml</td>
+    </tr>
+    <tr class="pass">
+      <td>Indexacion</td>
+      <td>sitemap contiene URL canonica</td>
+      <td>PASS</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="pass">
+      <td>Usabilidad</td>
+      <td>Favicon disponible</td>
+      <td>PASS</td>
+      <td>Status 200</td>
+      <td>http://127.0.0.1:8099/favicon.ico</td>
+    </tr></tbody>
+  </table>
+  <h2>Recursos locales</h2>
+  <table>
+    <thead><tr><th>URL</th><th>Status</th><th>Bytes</th><th>Content-Type</th></tr></thead>
+    <tbody>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/favicon.ico</td>
+      <td>200</td>
+      <td>32038</td>
+      <td>image/x-icon</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/favicon-32x32.png</td>
+      <td>200</td>
+      <td>3220</td>
+      <td>image/png</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/apple-touch-icon.png</td>
+      <td>200</td>
+      <td>33245</td>
+      <td>image/png</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/site.webmanifest</td>
+      <td>200</td>
+      <td>371</td>
+      <td>application/manifest+json</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/css/styles.css</td>
+      <td>200</td>
+      <td>30271</td>
+      <td>text/css</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/js/main.js</td>
+      <td>200</td>
+      <td>53143</td>
+      <td>text/javascript</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/logo1.webp</td>
+      <td>200</td>
+      <td>34532</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/fondo1.webp</td>
+      <td>200</td>
+      <td>36058</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/perfil.webp</td>
+      <td>200</td>
+      <td>36764</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-testimonio1.webp</td>
+      <td>200</td>
+      <td>20272</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-testimonio2.webp</td>
+      <td>200</td>
+      <td>21614</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/res-img.webp</td>
+      <td>200</td>
+      <td>52716</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/res-img2.webp</td>
+      <td>200</td>
+      <td>39434</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/res-img3.webp</td>
+      <td>200</td>
+      <td>64698</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/res-img4.webp</td>
+      <td>200</td>
+      <td>56456</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv1.webp</td>
+      <td>200</td>
+      <td>21614</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv2.webp</td>
+      <td>200</td>
+      <td>14232</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv3.webp</td>
+      <td>200</td>
+      <td>20996</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv4.webp</td>
+      <td>200</td>
+      <td>13810</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv5.webp</td>
+      <td>200</td>
+      <td>20272</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/flor-serv6.webp</td>
+      <td>200</td>
+      <td>13130</td>
+      <td>application/octet-stream</td>
+    </tr>
+    <tr class="pass">
+      <td>http://127.0.0.1:8099/assets/images/fondo-certificados-section.webp</td>
+      <td>200</td>
+      <td>50458</td>
+      <td>application/octet-stream</td>
+    </tr></tbody>
+  </table>
+</body>
+</html>
