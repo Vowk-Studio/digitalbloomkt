@@ -247,7 +247,7 @@ async function main() {
   }
   const sitemap = await fetchWithTimeout(sitemapTestUrl);
   addCheck('Indexacion', 'sitemap.xml disponible', sitemap.ok ? 'pass' : 'fail', `Status ${sitemap.status}`, sitemapTestUrl);
-  addCheck('Indexacion', 'sitemap contiene URL canonica', sitemap.text.includes('https://digitalbloomkt.com/') ? 'pass' : 'warn');
+  addCheck('Indexacion', 'sitemap contiene URL canonica', canonical && sitemap.text.includes(canonical) ? 'pass' : 'warn');
 
   const favicon = linkTags.find((tag) => /icon/i.test(tag.attrs.rel || ''))?.attrs.href;
   const faviconUrl = favicon ? resolveUrl(favicon) : resolveUrl('/favicon.ico');

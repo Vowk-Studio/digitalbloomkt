@@ -1,17 +1,14 @@
+window.addEventListener('unhandledrejection', (event) => {
+    const reason = event.reason;
+    const message = String(reason?.message || reason || '');
+    if (reason?.name === 'InvalidStateError' && message.includes('Transition was aborted because of invalid state')) {
+        event.preventDefault();
+    }
+});
+
 // ==========================================
 // 1. ESTADO GLOBAL Y DATOS DE SERVICIOS
 // ==========================================
-const state = {
-    currentPath: '',
-    menuItems: [
-        { id: 'servicios', label: 'Servicios' },
-        { id: 'quienes-somos', label: 'Nosotros' },
-        { id: 'contenido-gratuito', label: 'Recursos Gratuitos' },
-        { id: 'certificados', label: 'Certificados' },
-        { id: 'contacto', label: 'Contacto' }
-    ]
-};
-
 // Base de datos de los modales de Servicios (Estructura de Packs Completa)
 const servicesDetails = {
     'redes-sociales': {
@@ -241,333 +238,9 @@ const servicesDetails = {
 };
 
 // ==========================================
-// 2. COMPONENTES HTML (Diseño Moderno)
+// 2. INICIALIZACION SOBRE HTML ESTATICO
 // ==========================================
-
-const Header = () => `
-    <header class="header anim-montaje">
-        <div class="header-container">
-            <div class="logo">
-                <img src="./assets/images/logo1.webp" alt="Logo de DigitalBloomKT" width="700" height="700" fetchpriority="high">
-            </div>
-            <nav class="menu">
-                ${state.menuItems.map(item => `
-                    <a href="#${item.id}" class="menu-item">${item.label}</a>
-                `).join('')}
-            </nav>
-            <button class="mobile-menu-btn" type="button" aria-label="Abrir menú"><i class="fas fa-bars" aria-hidden="true"></i></button>
-        </div>
-    </header>
-`;
-
-const Hero = () => `
-    <section id="hero" class="hero anim-montaje hero-delay">
-        <div class="hero-content">
-            <p class="hero-tagline">Estrategia & Creatividad</p>
-            <h1 class="hero-title">Donde tu marca <span>florece.</span></h1>
-            <a href="#servicios" class="btn-primary">Descubrir Servicios</a>
-        </div>
-        <div class="hero-image-wrapper" aria-hidden="true">
-             <img class="hero-image" src="./assets/images/fondo1.webp" alt="" width="499" height="500">
-        </div>
-    </section>
-`;
-
-const Servicios = () => `
-    <section id="servicios" class="servicios section-padding">
-        <div class="container">
-            <div class="section-header">
-                <span class="subtitle">EXPERTISE</span>
-                <h2>Te presento mis servicios</h2>
-            </div>
-            <div class="servicios-grid">
-                <div class="servicio-card bg-serv-1" data-id="redes-sociales"><h3>Gestión en Redes Sociales</h3><p>Construimos comunidades sólidas y auténticas.</p></div>
-                <div class="servicio-card bg-serv-2" data-id="pauta"><h3>Pauta Publicitaria</h3><p>Campañas optimizadas en Meta Ads y Google Ads.</p></div>
-                <div class="servicio-card bg-serv-3" data-id="estrategia"><h3>Creación de Estrategia</h3><p>Rutas claras para el crecimiento de tu negocio.</p></div>
-                <div class="servicio-card bg-serv-4" data-id="diseno"><h3>Diseño de Piezas (Contenido)</h3><p>Piezas visuales atractivas y funcionales.</p></div>
-                <div class="servicio-card bg-serv-5" data-id="web"><h3>Desarrollo Web/Mobile/Windows</h3><p>Tu casa digital rápida, segura y estéticamente impecable.</p></div>
-                <div class="servicio-card bg-serv-6" data-id="identidad"><h3>Identidad de Marca</h3><p>Desarrollo de branding que conecta y perdura.</p></div>
-            </div>
-        </div>
-    </section>
-`;
-
-const QuienesSomos = () => `
-    <section id="quienes-somos" class="quienes-somos section-padding">
-        <div class="container layout-split">
-            <div class="content-text">
-                <span class="subtitle">QUIENES SOMOS</span>
-                <h2>NUESTRA HISTORIA</h2>
-                <p>Digitalbloomkt nació del deseo de transformar marcas que sienten que tienen mucho para dar… pero no saben cómo mostrarlo.</p>
-                <p>Soy <strong>Brenda Dujovich</strong>, y estoy detrás de esta agencia que combina estrategia, creatividad y mucha empatía.</p>
-                <p>Durante años trabajé con fábricas, emprendedores y marcas que querían crecer pero se sentían perdidos entre reels, algoritmos y diseños. Ahí entendí algo clave: <strong>no alcanza con publicar, hay que conectar.</strong></p>
-                <ul class="check-list">
-                    <li><i class="fas fa-check"></i> Diseñamos estrategias reales.</li>
-                    <li><i class="fas fa-check"></i> Creamos contenido que representa tu esencia.</li>
-                    <li><i class="fas fa-check"></i> Acompañamos a tu marca a florecer paso a paso.</li>
-                </ul>
-                <p class="highlight-text">Bienvenido a Digitalbloomkt, donde tu marca florece.</p>
-            </div>
-            <div class="content-image">
-                 <div class="image-placeholder">
-                    <img src="./assets/images/perfil.webp" alt="Brenda Dujovich, fundadora de DigitalBloomKT" class="foto-perfil" width="700" height="1244" loading="lazy" decoding="async">
-                    <img src="./assets/images/logo1.webp" alt="DigitalBloomKT" class="logo-superpuesto" width="700" height="700" loading="lazy" decoding="async">
-                 </div>
-            </div>
-        </div>
-    </section>
-`;
-
-const ContenidoGratuito = () => `
-    <section id="contenido-gratuito" class="contenido-gratuito section-padding">
-        <div class="container container-cta">
-            <div class="cta-card">
-                <h2>Descarga mi contenido gratuito</h2>
-                <p>Recursos, guías y plantillas diseñadas para impulsar el crecimiento de tu marca hoy mismo.</p>
-                <button id="descarga-aqui-btn" class="btn-shine-black">Descargar Aquí</button>
-            </div>
-        </div>
-    </section>
-`;
-
-const Resenas = () => `
-    <section id="resenas" class="reseñas-section section-padding">
-        <img src="assets/images/flor-testimonio1.webp" class="flor-bg flor-tl" alt="" width="362" height="272" loading="lazy" decoding="async">
-        <img src="assets/images/flor-testimonio2.webp" class="flor-bg flor-br" alt="" width="500" height="500" loading="lazy" decoding="async">
-        
-        <div class="container content-relative">
-            <div class="section-header center">
-                <span class="subtitle">Lo que dicen nuestros clientes</span>
-                <h2>TESTIMONIOS</h2>
-            </div>
-            <div class="reseñas-grid">
-                <div class="review-card"><img src="assets/images/res-img.webp" alt="Reseña de cliente de DigitalBloomKT" width="500" height="1015" loading="lazy" decoding="async"></div>
-                <div class="review-card"><img src="assets/images/res-img2.webp" alt="Reseña de cliente sobre marketing digital" width="500" height="989" loading="lazy" decoding="async"></div>
-                <div class="review-card"><img src="assets/images/res-img3.webp" alt="Testimonio de cliente sobre servicios de DigitalBloomKT" width="500" height="1012" loading="lazy" decoding="async"></div>
-                <div class="review-card"><img src="assets/images/res-img4.webp" alt="Opinión de cliente de DigitalBloomKT" width="500" height="1012" loading="lazy" decoding="async"></div>
-            </div>
-            <div class="ver-mas-container">
-                <a href="https://www.instagram.com/stories/highlights/17844320421113426/" class="btn-instagram-shine" target="_blank" rel="noopener noreferrer">
-                    Ver más reseñas en Instagram <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-`;
-
-const Certificados = () => `
-    <section id="certificados" class="certificados section-padding">
-        <div class="container">
-            <div class="section-header center">
-                <span class="subtitle">Mis Certificados</span>
-                <h2>FORMACIÓN</h2>
-            </div>
-            <div class="certificados-wrap"> 
-                <div class="certificado-circulo" data-large-image="assets/certificados/adsvisors.png" data-caption="Certificado de Asesoría de Marketing Digital (Advisors)"><p>Advisors<br>Marketing</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/cmypublicidad.png" data-caption="Certificado de Community Manager y Publicidad Digital"><p>CM y<br>Publicidad</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/copywriting.png" data-caption="Certificado de Copywriting Persuasivo"><p>Copywriting</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/HerramientasDigitales.png" data-caption="Certificado de Herramientas Digitales I"><p>Herramientas<br>Digitales I</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/GrowthMarketing.png" data-caption="Certificado de Growth Marketing y Estrategias de Crecimiento"><p>Growth<br>Marketing</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/seo.png" data-caption="Certificado de SEO Básico para Posicionamiento Web"><p>SEO<br>Básico</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/HerramientasDigitales2.png" data-caption="Certificado de Herramientas Digitales II"><p>Herramientas<br>Digitales II</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/publicidaddisplaygoogleads.png" data-caption="Certificado de Publicidad Display con Google Ads"><p>Display<br>GoogleAds</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/marketingdigital.png" data-caption="Certificado Completo de Marketing Digital"><p>Marketing<br>Digital</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/Foto-Producto.png" data-caption="Certificado de Fotografía de Producto Profesional"><p>Foto<br>Producto</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/publicidadenredes.png" data-caption="Certificado de Publicidad en Redes Sociales"><p>Publicidad<br>en Redes</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/identidaddemarca.png" data-caption="Certificado de Creación de Identidad de Marca"><p>Identidad<br>de Marca</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/HerramientasDigitales3.png" data-caption="Certificado de Herramientas Digitales III"><p>Herramientas<br>Digitales III</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/publicidad.png" data-caption="Certificado Avanzado de Google Ads"><p>Google<br>Ads</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/reelsytiktok.png" data-caption="Certificado de Creación de Contenido para Reels y TikTok"><p>Reels y<br>TikTok</p></div>
-                <div class="certificado-circulo" data-large-image="assets/certificados/emailmarketing.png" data-caption="Certificado de Email Marketing"><p>Email Marketing</p></div>
-            </div>
-        </div>
-    </section>
-`;
-
-const Contacto = () => `
-    <section id="contacto" class="contacto section-padding">
-        <div class="container">
-            <div class="section-header center">
-                <span class="subtitle">HABLEMOS</span>
-                <h2>CONTACTANOS</h2>
-                <p class="cta-text-giant">¿Lista para hacer florecer tu marca? Escribinos y comencemos a trabajar en tu estrategia.</p>
-            </div>
-            
-            <div class="contact-layout-centered">
-                <div class="social-sidebar">
-                    <a href="https://www.instagram.com/digitalbloomkt/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram de DigitalBloomKT"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.facebook.com/share/16BipM7eHb/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook de DigitalBloomKT"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                    <a href="mailto:brendadujovich@gmail.com" class="social-btn" aria-label="Email de DigitalBloomKT"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                    <a href="https://www.tiktok.com/@digitalbloomkt?lang=es-419" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok de DigitalBloomKT"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
-                </div>
-                
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="modern-form" method="post" action="./enviar_consulta.php">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="consulta">Mensaje</label>
-                            <textarea id="consulta" name="consulta" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
-                        </div>
-                        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
-                        <button type="submit" id="enviarConsultaBtn" class="btn-shine-gold w-100">Enviar Consulta</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-`;
-
-const Footer = () => `
-    <footer class="modern-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <h2>DigitalBloo<span>MKT</span></h2>
-                <p>Neuro-estrategias para marcas que dominan el futuro.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Navegación</h3>
-                <a href="#servicios">Servicios</a>
-                <a href="#quienes-somos">Nosotros</a>
-                <a href="#contacto">Contacto</a>
-            </div>
-            <div class="footer-status">
-                <div class="status-badge">
-                    <span class="dot"></span> DISPONIBLE
-                </div>
-                <p>Aceptando nuevos desafíos para 2026.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 DIGITALBLOOMKT — Todos los derechos reservados.</p>
-        </div>
-    </footer>
-`;
-
-const ModalsYExtras = () => `
-    <a href="https://wa.me/+5492213576210?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar a DigitalBloomKT por WhatsApp">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-    </a>
-
-    <div id="contenido-gratuito-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="cerrar-modal-gratuito">×</span>
-            <h2 class="modal-title-gold">MATERIAL GRATUITO</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Selecciona los recursos y te los enviaremos.</p>
-            <form id="form-contenido-gratuito" class="modern-form form-gratuito-scroll">
-                <div class="checkbox-grid">
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="convierte-tus-seguidores-en-clientes"><span>Convierte a tus seguidores en clientes y maximiza tus ventas</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="10-cierres-de-venta"><span>10 cierres de venta</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="10-ideas-aumentar-ventas-san-valentin"><span>10 ideas para aumentar las ventas en San Valentín</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="30-ideas-storytelling"><span>30 ideas de Storytelling Leadmagnet</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="30-dias-de-abundancia"><span>30 días de abundancia</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="boletin-de-estrategias-dia-del-padre"><span>Boletín de estrategias para vender en el Día del Padre</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="bonus-infalible"><span>Bonus Infalible</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-como-crecer-rapido-ig"><span>Ebook: Cómo crecer rápido en Instagram</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-500-ideas-de-contenido"><span>Ebook: 500 ideas de contenido</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="estrategias-infalibles-esta-navidad"><span>Estrategias infalibles para esta navidad</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-como-generar-ideas-de-contenido"><span>Guía: Cómo generar ideas de contenido Creativas y Efectivas</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="algoritmos-de-ig"><span>Los algoritmos de Instagram</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plan-de-contenidos"><span>Plan de contenidos</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-para-organizar-tus-promociones"><span>Plantilla para organizar tus promociones</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="superando-el-vertigo-ig"><span>Superando el vértigo en Instagram</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ventas-dia-de-la-madre"><span>Ventas Día de la Madre</span></label>
-
-                    <!-- <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-seo-basico"><span>Guía de SEO Básico</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="checklist-marketing-digital"><span>Checklist de Marketing Digital</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="ebook-copywriting-persuasivo"><span>Ebook de Copywriting Persuasivo</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="curso-google-ads-avanzado"><span>Curso Google Ads Avanzado</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-creacion-reels-tiktok"><span>Guía de Creación de Reels y TikTok</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-calendario-contenido"><span>Plantilla Calendario de Contenido</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="auditoria-redes-sociales"><span>Auditoría Rápida de Redes</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="kit-diseno-basico"><span>Kit de Diseño Gráfico Básico</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="estrategias-email-marketing"><span>Estrategias de Email Marketing</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="consejos-fotoproducto"><span>Consejos para Foto de Producto</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-analitica-web"><span>Guía de Analítica Web</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-brief-cliente"><span>Plantilla de Brief para Cliente</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="herramientas-digitales-avanzadas"><span>Herramientas Digitales Avanzadas</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="caso-estudio-marketing-exitoso"><span>Caso de Estudio Marketing Exitoso</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-publicidad-facebook-instagram"><span>Guía de Publicidad en FB e IG</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="claves-branding-personal"><span>Claves para el Branding Personal</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="curso-chatbots-marketing"><span>Curso Básico Chatbots</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-reporte-marketing"><span>Plantilla Reporte de Marketing</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-linkedin-para-negocios"><span>Guía de LinkedIn Negocios</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="consejos-creacion-blog"><span>Consejos Creación de Blog</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="estrategias-fidelizacion-clientes"><span>Estrategias Fidelización</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="introduccion-google-analytics-4"><span>Intro a Google Analytics 4</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="checklist-lanzamiento-producto"><span>Checklist Lanzamiento Producto</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-marketing-contenidos"><span>Guía de Marketing de Contenidos</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="curso-canva-diseno-rapido"><span>Curso Canva Diseño Rápido</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="tacticas-incrementar-ventas"><span>Tácticas para Incrementar Ventas</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="manual-customer-journey"><span>Manual Customer Journey</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="tendencias-marketing-digital-2025"><span>Tendencias Marketing 2025</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-primeros-pasos-ecommerce"><span>Guía Primeros Pasos E-commerce</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="consejos-crear-landing-page"><span>Consejos Landing Page Efectiva</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="plantilla-estrategia-social-media"><span>Plantilla Estrategia Social Media</span></label>
-                    <label class="custom-checkbox"><input type="checkbox" name="contenido" value="guia-google-my-business"><span>Guía de Google My Business</span></label> -->
-                </div>
-                <input type="email" id="user-email-gratuito" placeholder="Tu Email" required style="margin-top:15px; width:100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size:1.1rem;">
-                <button type="submit" class="btn-shine-gold w-100" style="margin-top: 15px;">Solicitar</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="certificado-modal" class="modal-overlay modal-centered">
-        <span class="cerrar-modal">×</span>
-        <div class="modal-image-container flex-center">
-             <img id="img-certificado-modal" alt="Certificado" width="1080" height="1920">
-             <div id="modal-caption"></div>
-        </div>
-    </div>
-    
-    <div id="servicio-modal" class="modal-overlay modal-centered">
-        <div class="modal-content text-left" style="max-width: 700px; padding-top: 40px; border-top: 8px solid var(--primary);">
-            <span class="cerrar-modal-servicio" style="position: absolute; top: 15px; right: 25px; font-size: 2.5rem; cursor: pointer; color: var(--gray-text); z-index: 2001;">×</span>
-            <div id="servicio-modal-content-inject" class="servicio-modal-scroll">
-                </div>
-        </div>
-    </div>
-`;
-
-const App = () => `
-    ${Header()}
-    ${Hero()}
-    ${Servicios()}
-    ${QuienesSomos()}
-    ${ContenidoGratuito()}
-    ${Resenas()}
-    ${Certificados()}
-    ${Contacto()}
-    ${Footer()}
-    ${ModalsYExtras()}
-`;
-
-// ==========================================
-// 3. RENDERIZADO SPA
-// ==========================================
-function renderApp() {
-    const appContainer = document.getElementById('app');
-    
-    const mount = () => {
-        appContainer.innerHTML = App();
-        requestAnimationFrame(() => {
-            appContainer.querySelectorAll('.anim-montaje').forEach(el => el.classList.add('montado'));
-        });
-        initEffects();
-    };
-
-    if (document.startViewTransition) {
-        document.startViewTransition(() => mount());
-    } else {
-        mount();
-    }
-}
+// La pagina ya viene renderizada en index.html para que Hostinger y los bots reciban contenido completo.
 
 // ==========================================
 // 4. LÓGICA DE INTERACCIÓN
@@ -575,16 +248,17 @@ function renderApp() {
 function initEffects() {
     
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
+    if (header) window.addEventListener('scroll', () => {
         if (window.scrollY > 50) header.classList.add('scrolled');
         else header.classList.remove('scrolled');
-    });
+    }, { passive: true });
 
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.querySelector('.menu');
-    if(mobileBtn) {
+    if(mobileBtn && navMenu) {
         mobileBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            mobileBtn.setAttribute('aria-expanded', String(navMenu.classList.contains('active')));
         });
     }
 
@@ -598,8 +272,9 @@ function initEffects() {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                navMenu.classList.remove('active'); 
-                const headerHeight = document.querySelector('.header').offsetHeight;
+                navMenu?.classList.remove('active'); 
+                mobileBtn?.setAttribute('aria-expanded', 'false');
+                const headerHeight = header?.offsetHeight || 0;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.scrollY - headerHeight;
         
@@ -609,16 +284,70 @@ function initEffects() {
     });
 
     const openModal = (id) => {
-        document.getElementById(id).classList.add('active');
+        const modal = document.getElementById(id);
+        if (!modal) return;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     };
     const closeModal = () => {
-        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+        document.querySelectorAll('.modal-overlay').forEach(m => {
+            m.classList.remove('active');
+            m.setAttribute('aria-hidden', 'true');
+        });
         document.body.style.overflow = 'auto';
     };
 
     const btnGratis = document.getElementById('descarga-aqui-btn');
     if(btnGratis) btnGratis.addEventListener('click', () => openModal('contenido-gratuito-modal'));
+
+    const enableDeferredBackgrounds = () => {
+        document.querySelectorAll('.servicio-card').forEach(card => card.classList.add('bg-ready'));
+        document.querySelector('.certificados')?.classList.add('bg-ready');
+    };
+
+    if ('IntersectionObserver' in window) {
+        const backgroundObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                if (entry.target.id === 'servicios') {
+                    document.querySelectorAll('.servicio-card').forEach(card => card.classList.add('bg-ready'));
+                } else {
+                    entry.target.classList.add('bg-ready');
+                }
+                backgroundObserver.unobserve(entry.target);
+            });
+        }, { rootMargin: '-80px 0px', threshold: 0.01 });
+
+        ['servicios', 'certificados'].forEach(id => {
+            const section = document.getElementById(id);
+            if (section) backgroundObserver.observe(section);
+        });
+    } else {
+        enableDeferredBackgrounds();
+    }
+
+    const loadLazyImage = (image) => {
+        if (image.dataset.srcset) image.srcset = image.dataset.srcset;
+        if (image.dataset.sizes) image.sizes = image.dataset.sizes;
+        if (image.dataset.src) image.src = image.dataset.src;
+        image.classList.remove('lazy-img');
+    };
+
+    const lazyImages = document.querySelectorAll('img.lazy-img');
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                loadLazyImage(entry.target);
+                imageObserver.unobserve(entry.target);
+            });
+        }, { rootMargin: '220px 0px' });
+
+        lazyImages.forEach(image => imageObserver.observe(image));
+    } else {
+        lazyImages.forEach(loadLazyImage);
+    }
 
     // Lógica Popup Certificados
     document.querySelectorAll('.certificado-circulo').forEach(card => {
@@ -640,10 +369,10 @@ function initEffects() {
     function renderPacksList(serviceId) {
         const data = servicesDetails[serviceId];
         let packsCardsHtml = data.packs.map((pack, index) => `
-            <div class="pack-card" data-service="${serviceId}" data-packindex="${index}">
+            <button class="pack-card" type="button" data-service="${serviceId}" data-packindex="${index}">
                 <h3>${pack.name}</h3>
                 <span class="pack-arrow"><i class="fas fa-chevron-right"></i></span>
-            </div>
+            </button>
         `).join('');
 
         modalBodyInject.innerHTML = `
@@ -680,7 +409,7 @@ function initEffects() {
                 ${pack.content}
             </div>
             
-            <a href="https://wa.me/+5492213576210?text=${encodeURIComponent(pack.wspMessage)}" target="_blank" class="btn-shine-gold w-100" style="display: block; margin-top: 30px;">Quiero mi pack <i class="fab fa-whatsapp" style="margin-left: 8px;"></i></a>
+            <a href="https://wa.me/+5492213576210?text=${encodeURIComponent(pack.wspMessage)}" target="_blank" rel="noopener noreferrer" class="btn-shine-gold w-100" style="display: block; margin-top: 30px;">Quiero mi pack <i class="fab fa-whatsapp" aria-hidden="true" style="margin-left: 8px;"></i></a>
         `;
 
         // Al hacer click en "Volver", llamamos a la Función 1
@@ -706,34 +435,60 @@ function initEffects() {
         });
     });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-            }
-        });
-    }, { threshold: 0.1 });
+    const revealTargets = document.querySelectorAll('.section-header, .servicio-card, .review-card, .certificado-circulo, .content-text, .modern-form');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-header, .servicio-card, .review-card, .certificado-circulo, .content-text, .modern-form').forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
-        observer.observe(el);
-    });
+        revealTargets.forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            observer.observe(el);
+        });
+    } else {
+        revealTargets.forEach(el => el.classList.add('fade-in-up'));
+    }
 
     const contactForm = document.getElementById('contactForm');
     const enviarConsultaBtn = document.getElementById('enviarConsultaBtn');
     if (enviarConsultaBtn && contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+            const wasAgentInvoked = e.agentInvoked && typeof e.respondWith === 'function';
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                if (wasAgentInvoked) {
+                    e.respondWith(Promise.resolve({
+                        status: 'invalid',
+                        message: 'Faltan datos requeridos o el email no es valido.'
+                    }));
+                }
+                return;
+            }
             const formData = new FormData(contactForm);
             const originalText = enviarConsultaBtn.innerText;
             enviarConsultaBtn.innerText = "Enviando..."; enviarConsultaBtn.disabled = true;
 
-            fetch(contactForm.getAttribute('action') || './enviar_consulta.php', { method: 'POST', body: formData })
-            .then(res => res.text()).then(data => { alert(data); contactForm.reset(); })
-            .catch(() => alert("Error enviando consulta."))
+            const submitRequest = fetch(contactForm.getAttribute('action') || './enviar_consulta.php', { method: 'POST', body: formData })
+            .then(res => res.text()).then(data => {
+                alert(data);
+                contactForm.reset();
+                return { status: 'submitted', message: data };
+            })
+            .catch(() => {
+                const message = "Error enviando consulta.";
+                alert(message);
+                return { status: 'error', message };
+            })
             .finally(() => { enviarConsultaBtn.innerText = originalText; enviarConsultaBtn.disabled = false; });
+
+            if (wasAgentInvoked) e.respondWith(submitRequest);
         });
     }
 
@@ -741,11 +496,36 @@ function initEffects() {
     if(formGratis) {
         formGratis.addEventListener('submit', (e) => {
             e.preventDefault();
+            const wasAgentInvoked = e.agentInvoked && typeof e.respondWith === 'function';
+            if (!formGratis.checkValidity()) {
+                formGratis.reportValidity();
+                if (wasAgentInvoked) {
+                    e.respondWith(Promise.resolve({
+                        status: 'invalid',
+                        message: 'El email es requerido para enviar los recursos gratuitos.'
+                    }));
+                }
+                return;
+            }
+            const selectedResources = Array.from(formGratis.querySelectorAll('input[name="contenido"]:checked')).map(input => input.value);
+            const email = formGratis.querySelector('#user-email-gratuito')?.value || '';
             closeModal();
-            alert("Solicitud enviada. Revisa tu email.");
+            const message = "Solicitud enviada. Revisa tu email.";
+            alert(message);
             formGratis.reset();
+            if (wasAgentInvoked) {
+                e.respondWith(Promise.resolve({
+                    status: 'requested',
+                    message,
+                    email,
+                    selectedResources
+                }));
+            }
         });
     }
 }
 
-document.addEventListener('DOMContentLoaded', renderApp);
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.anim-montaje').forEach(el => el.classList.add('montado'));
+    initEffects();
+});
