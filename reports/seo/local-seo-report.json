@@ -1,12 +1,12 @@
 {
-  "target": "http://127.0.0.1:8099/",
-  "scannedAt": "2026-06-04T18:50:40.982Z",
+  "target": "http://127.0.0.1:8100/",
+  "scannedAt": "2026-06-07T23:47:45.168Z",
   "score": 100,
   "counts": {
     "pass": 26,
     "warn": 0,
     "fail": 0,
-    "resources": 22
+    "resources": 15
   },
   "checks": [
     {
@@ -14,7 +14,7 @@
       "name": "Pagina principal responde 200",
       "status": "pass",
       "detail": "Status 200",
-      "evidence": "http://127.0.0.1:8099/"
+      "evidence": "http://127.0.0.1:8100/"
     },
     {
       "category": "SEO",
@@ -41,7 +41,7 @@
       "category": "SEO",
       "name": "Canonical presente",
       "status": "pass",
-      "detail": "https://digitalbloomkt.com/",
+      "detail": "https://www.digitalbloomkt.com/",
       "evidence": ""
     },
     {
@@ -62,7 +62,7 @@
       "category": "SEO",
       "name": "Encabezados visibles",
       "status": "pass",
-      "detail": "15 encabezados",
+      "detail": "16 encabezados",
       "evidence": ""
     },
     {
@@ -104,7 +104,7 @@
       "category": "Links",
       "name": "Enlaces externos presentes",
       "status": "pass",
-      "detail": "4 enlaces externos",
+      "detail": "5 enlaces externos",
       "evidence": ""
     },
     {
@@ -125,7 +125,7 @@
       "category": "Conversion",
       "name": "Formulario de contacto detectable",
       "status": "pass",
-      "detail": "1 formularios",
+      "detail": "2 formularios",
       "evidence": ""
     },
     {
@@ -139,21 +139,21 @@
       "category": "Recursos",
       "name": "Recursos locales responden OK",
       "status": "pass",
-      "detail": "0 fallidos de 22",
+      "detail": "0 fallidos de 15",
       "evidence": ""
     },
     {
       "category": "Performance",
       "name": "Peso HTML menor a 100 KB",
       "status": "pass",
-      "detail": "18416 bytes",
+      "detail": "31181 bytes",
       "evidence": ""
     },
     {
       "category": "Performance",
       "name": "Peso local inicial razonable",
       "status": "pass",
-      "detail": "687760 bytes incluyendo recursos locales detectados",
+      "detail": "369576 bytes incluyendo recursos locales detectados",
       "evidence": ""
     },
     {
@@ -175,7 +175,7 @@
       "name": "sitemap.xml disponible",
       "status": "pass",
       "detail": "Status 200",
-      "evidence": "http://127.0.0.1:8099/sitemap.xml"
+      "evidence": "http://127.0.0.1:8100/sitemap.xml"
     },
     {
       "category": "Indexacion",
@@ -189,162 +189,113 @@
       "name": "Favicon disponible",
       "status": "pass",
       "detail": "Status 200",
-      "evidence": "http://127.0.0.1:8099/favicon.ico"
+      "evidence": "http://127.0.0.1:8100/favicon.ico"
     }
   ],
   "resources": [
     {
-      "url": "http://127.0.0.1:8099/favicon.ico",
+      "url": "http://127.0.0.1:8100/assets/css/styles.min.css?v=20260607",
+      "status": 200,
+      "bytes": 22362,
+      "contentType": "text/css; charset=utf-8",
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:8100/favicon.ico",
       "status": 200,
       "bytes": 32038,
       "contentType": "image/x-icon",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/favicon-32x32.png",
+      "url": "http://127.0.0.1:8100/favicon-32x32.png",
       "status": 200,
       "bytes": 3220,
       "contentType": "image/png",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/apple-touch-icon.png",
+      "url": "http://127.0.0.1:8100/apple-touch-icon.png",
       "status": 200,
       "bytes": 33245,
       "contentType": "image/png",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/site.webmanifest",
+      "url": "http://127.0.0.1:8100/site.webmanifest",
       "status": 200,
-      "bytes": 371,
-      "contentType": "application/manifest+json",
+      "bytes": 389,
+      "contentType": "application/manifest+json; charset=utf-8",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/css/styles.css",
+      "url": "http://127.0.0.1:8100/assets/js/main.min.js?v=20260607",
       "status": 200,
-      "bytes": 30271,
-      "contentType": "text/css",
+      "bytes": 23725,
+      "contentType": "application/javascript; charset=utf-8",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/js/main.js",
-      "status": 200,
-      "bytes": 53143,
-      "contentType": "text/javascript",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/logo1.webp",
+      "url": "http://127.0.0.1:8100/assets/images/logo1.webp",
       "status": 200,
       "bytes": 34532,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/fondo1.webp",
+      "url": "http://127.0.0.1:8100/assets/images/fondo1.webp",
       "status": 200,
       "bytes": 36058,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/perfil.webp",
-      "status": 200,
-      "bytes": 36764,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/flor-testimonio1.webp",
-      "status": 200,
-      "bytes": 20272,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/flor-testimonio2.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv1.webp",
       "status": 200,
       "bytes": 21614,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/res-img.webp",
-      "status": 200,
-      "bytes": 52716,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/res-img2.webp",
-      "status": 200,
-      "bytes": 39434,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/res-img3.webp",
-      "status": 200,
-      "bytes": 64698,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/res-img4.webp",
-      "status": 200,
-      "bytes": 56456,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv1.webp",
-      "status": 200,
-      "bytes": 21614,
-      "contentType": "application/octet-stream",
-      "ok": true
-    },
-    {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv2.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv2.webp",
       "status": 200,
       "bytes": 14232,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv3.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv3.webp",
       "status": 200,
-      "bytes": 20996,
-      "contentType": "application/octet-stream",
+      "bytes": 19310,
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv4.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv4.webp",
       "status": 200,
       "bytes": 13810,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv5.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv5.webp",
       "status": 200,
       "bytes": 20272,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/flor-serv6.webp",
+      "url": "http://127.0.0.1:8100/assets/images/flor-serv6.webp",
       "status": 200,
       "bytes": 13130,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     },
     {
-      "url": "http://127.0.0.1:8099/assets/images/fondo-certificados-section.webp",
+      "url": "http://127.0.0.1:8100/assets/images/fondo-certificados-section.webp",
       "status": 200,
       "bytes": 50458,
-      "contentType": "application/octet-stream",
+      "contentType": "image/webp",
       "ok": true
     }
   ]
