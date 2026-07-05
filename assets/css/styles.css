@@ -3,6 +3,7 @@
    ========================================== */
 :root {
     --primary: #D4AF37; 
+    --primary-contrast: #8A6A12;
     --primary-light: #F9F4E8;
     --dark: #1A1A1A; 
     --gray-light: #F5F5F7;
@@ -325,6 +326,7 @@ a { text-decoration: none; color: inherit; }
     opacity: 0.15; 
     z-index: 1;
 }
+.hero-image-wrapper picture { display: block; width: 100%; height: 100%; }
 .hero-image { width: 100%; height: 100%; object-fit: cover; }
 
 /* ==========================================
@@ -899,19 +901,22 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
     .menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px; box-shadow: var(--shadow-sm); }
     .menu.active { display: flex; }
-    .mobile-menu-btn { display: block; }
+    .mobile-menu-btn { display: block; width: 44px; height: 44px; }
     .footer-grid { grid-template-columns: 1fr; gap: 40px; }
     .section-padding { padding: 60px 0; }
     .hero { text-align: center; padding-top: 120px; }
     .hero-title { font-size: 3rem; }
+    .hero-title span,
+    .subtitle { color: var(--primary-contrast); text-shadow: none; }
     .section-header h2 { font-size: 2.5rem; }
     .servicios-grid { grid-template-columns: 1fr; }
     .servicio-card { min-height: 230px; padding: 44px 24px; }
     .contact-form-wrapper { width: 100%; min-width: 0; }
     .modern-form { padding: 28px 20px; }
     .social-btn { width: 60px; height: 60px; font-size: 1.55rem; }
-    .header-container { height: 86px; }
-    .logo img { height: 94px; }
+    .header-container { height: 94px; }
+    .logo { width: 94px; flex: 0 0 94px; }
+    .logo img { height: 94px; margin-bottom: 0; }
     .modal-content { width: 92%; max-height: 90vh; overflow-y: auto; }
     .cta-text-giant { font-size: 1.2rem; }
 }
