@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MDPP5TW6');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLS4NF0RVF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SLS4NF0RVF');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Agencia de marketing digital en Argentina. Estrategia, redes sociales, pauta publicitaria, branding y desarrollo web para hacer florecer tu marca.">
@@ -17,7 +33,7 @@
     <meta property="og:url" content="https://www.digitalbloomkt.com/">
     <meta property="og:image" content="https://www.digitalbloomkt.com/assets/images/logo1.webp">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DigitalBloomKT | Agencia de Marketing Digital 22">
+    <meta name="twitter:title" content="DigitalBloomKT | Agencia de Marketing Digital">
     <meta name="twitter:description" content="Estrategia, creatividad y marketing digital para que tu marca florezca.">
     <meta name="twitter:image" content="https://www.digitalbloomkt.com/assets/images/logo1.webp">
 
@@ -28,7 +44,7 @@
     <link rel="preload" href="./assets/css/styles.min.css?v=20260704-1" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="./assets/css/styles.min.css?v=20260704-1"></noscript>
     <style>
-    .subtitle{color: var(--primary);text-shadow:0 1px 2px rgba(0,0,0,.12)}
+    .subtitle{color:var(--primary);text-shadow:0 1px 2px rgba(0,0,0,.12)}
     .hero-title span{color:var(--primary);font-style:normal;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.12)}
     @media (max-width:768px){.hero-title span,.subtitle{color:var(--primary-contrast);text-shadow:none}}
     .fa-instagram::before,.fa-facebook-f::before,.fa-envelope::before,.fa-tiktok::before{content:"";display:inline-block;width:1em;height:1em;background-position:center;background-repeat:no-repeat;background-size:contain}
@@ -274,7 +290,7 @@
                 <button class="cerrar-modal-gratuito" type="button" aria-label="Cerrar modal">×</button>
                 <h2 id="contenido-gratuito-title" class="modal-title-gold">MATERIAL GRATUITO</h2>
                 <p style="text-align: center; margin-bottom: 20px;">Selecciona los recursos y te los enviaremos.</p>
-                <form id="form-contenido-gratuito" class="modern-form form-gratuito-scroll" toolname="requestFreeMarketingResources" tooldescription="Solicita materiales gratuitos de marketing digital por email.">git
+                <form id="form-contenido-gratuito" class="modern-form form-gratuito-scroll" toolname="requestFreeMarketingResources" tooldescription="Solicita materiales gratuitos de marketing digital por email.">
                     <div class="checkbox-grid">
                         <label class="custom-checkbox"><input type="checkbox" name="contenido" value="convierte-tus-seguidores-en-clientes"><span>Convierte a tus seguidores en clientes y maximiza tus ventas</span></label>
                         <label class="custom-checkbox"><input type="checkbox" name="contenido" value="10-cierres-de-venta"><span>10 cierres de venta</span></label>
@@ -317,5 +333,72 @@
     </div>
 
     <script src="./assets/js/main.min.js?v=20260704-1" defer></script>
+    <script>
+  // 1. Manejo del Formulario de Contacto General
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const consulta = document.getElementById('consulta').value;
+
+      try {
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, consulta })
+        });
+
+        const resultado = await response.json();
+        
+        if (response.ok) {
+          alert(resultado.message || "¡Consulta enviada con éxito!");
+          contactForm.reset();
+        } else {
+          alert(resultado.error || "Ocurrió un error al enviar la consulta.");
+        }
+      } catch (err) {
+        alert("Error de red al intentar enviar el formulario.");
+      }
+    });
+  }
+
+  // 2. Manejo del Formulario de Contenido Gratuito (Modal)
+  const formGratuito = document.getElementById('form-contenido-gratuito');
+  if (formGratuito) {
+    formGratuito.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('user-email-gratuito').value;
+      
+      const contenido = [];
+      formGratuito.querySelectorAll('input[name="contenido"]:checked').forEach(el => {
+        contenido.push(el.value);
+      });
+
+      try {
+        const response = await fetch('/api/recursos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, contenido })
+        });
+
+        const resultado = await response.json();
+        
+        if (response.ok) {
+          alert(resultado.message || "¡Recursos enviados con éxito a tu correo!");
+          formGratuito.reset();
+          // Opcional: cerrar el modal automáticamente si tienes una función para ello
+        } else {
+          alert(resultado.error || "Ocurrió un error.");
+        }
+      } catch (err) {
+        alert("Error de red al intentar solicitar los recursos.");
+      }
+    });
+  }
+</script>
 </body>
 </html>
